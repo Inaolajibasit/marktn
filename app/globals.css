@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  background: #F7F5F2;
+}
+
+body {
+  @apply bg-paper text-ink font-body antialiased;
+  cursor: none; /* replaced by the aperture cursor on pointer:fine devices */
+}
+
+@media (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+}
+
+@media (pointer: coarse) {
+  .custom-cursor-layer {
+    display: none;
+  }
+}
+
+::selection {
+  background: #C36A2D;
+  color: #F7F5F2;
+}
+
+/* Visible keyboard focus everywhere — never suppressed, only restyled */
+:focus-visible {
+  outline: 2px solid #C36A2D;
+  outline-offset: 3px;
+}
+
+.eyebrow {
+  @apply font-mono text-eyebrow uppercase text-ink-40;
+}
+
+.rule {
+  @apply border-t border-paper-line;
+}
+
+/* Word-by-word hero reveal: each span starts clipped and lifted */
+.reveal-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+.reveal-word > span {
+  display: inline-block;
+  transform: translateY(110%);
+  will-change: transform;
+}
+
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* When the full-screen menu overlay is open, the cursor aperture inverts —
+   rust dot + ink ring are unreadable on the dark overlay. Paper-on-ink. */
+[data-menu-open="true"] .cursor-on-dark {
+  background-color: #F7F5F2; /* paper */
+  border-color: #F7F5F2; /* paper */
+}
+
+/* Cursor over the teal Founder panel — the rust aperture reads better
+   against deep teal than ink does. Set on body from JS based on
+   elementFromPoint; not a CSS ancestor selector because the cursor is
+   a fixed-position element, not nested inside Founder. */
+[data-cursor-zone="teal"] .cursor-on-dark {
+  background-color: #C36A2D; /* rust */
+  border-color: #C36A2D; /* rust */
+}
+
+/* Draw-in hairline rule. Drives the rust underline below section
+   eyebrows and the Services gridlines. GSAP sets scaleX from 0 to 1 on
+   scroll; transform-origin keeps the line growing from left to right. */
+[data-rule] {
+  transform-origin: left center;
+  transform: scaleX(0);
+  will-change: transform;
+}
+
+/* Surface-specific divider when running on the teal Founder panel. */
+.rule-teal {
+  border-top: 1px solid rgb(58 90 112 / 0.4); /* teal-line at 40% */
+}
