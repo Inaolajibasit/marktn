@@ -8,8 +8,9 @@ export function generateStaticParams() {
   return campaigns.map((c) => ({ slug: c.slug }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const campaign = getCampaignBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const campaign = getCampaignBySlug(slug);
   if (!campaign) return {};
   return {
     title: `${campaign.client} — Case Study`,
@@ -18,10 +19,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default function CaseStudyPage({ params }: { params: { slug: string } }) {
-  const campaign = getCampaignBySlug(params.slug);
+export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const campaign = getCampaignBySlug(slug);
   if (!campaign) notFound();
-  const next = getNextCampaign(params.slug);
+  const next = getNextCampaign(slug);
 
   return (
     <article>
