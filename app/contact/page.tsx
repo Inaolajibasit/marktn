@@ -86,7 +86,7 @@ export default function ContactPage() {
         <button
           type="submit"
           disabled={pending}
-          className="mt-4 w-fit bg-ink px-8 py-4 font-mono text-caption uppercase tracking-[0.1em] text-paper transition-colors hover:bg-rust disabled:opacity-50"
+          className="mt-4 inline-flex min-h-[44px] w-fit items-center bg-ink px-8 py-4 font-mono text-caption uppercase tracking-[0.1em] text-paper transition-[background-color,transform] duration-150 ease-out hover:bg-rust focus-visible:bg-rust active:scale-[0.98] active:bg-rust disabled:cursor-not-allowed disabled:opacity-50 disabled:active:scale-100"
         >
           {pending ? "Sending…" : "Send Enquiry"}
         </button>

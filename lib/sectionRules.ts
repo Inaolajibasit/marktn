@@ -15,7 +15,7 @@
  */
 
 import gsap from "gsap";
-import { prefersReducedMotion } from "./motion";
+import { prefersReducedMotion, DURATION } from "./motion";
 
 export function initSectionRules(scope: HTMLElement | null): void {
   if (!scope) return;
@@ -32,8 +32,8 @@ export function initSectionRules(scope: HTMLElement | null): void {
         { scaleX: 0 },
         {
           scaleX: 1,
-          duration: 1.1,
-          ease: "power4.out",
+          duration: DURATION.base, // 0.6 — was 1.1
+          ease: "expo.out", // snappier settle, mirrors the spring default
           scrollTrigger: { trigger: el, start: "top 92%", once: true },
         }
       );

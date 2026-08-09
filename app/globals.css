@@ -6,14 +6,73 @@
   color-scheme: light;
 }
 
+/* Skill §14 — three independent media signals, each with the right
+   response. Previous version blanket-killed ALL transitions, which made
+   hover colour washes instant and jarring for reduced-motion users.
+   This version only shortens motion-bearing animations/transitions,
+   keeping color/background-color/opacity transitions available for
+   state feedback that aids comprehension. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
+    /* Use a wide-shorthand only on a curated list of motion-bearing
+       property SHORTHANDS via specific selectors below. We deliberately
+       do NOT override `transition-duration` globally — that wipes all
+       Tailwind transition-colors, transition-opacity, etc. */
     scroll-behavior: auto !important;
+  }
+  /* Kill long transitions only for the motion-bearing properties. */
+  .reveal-word > span,
+  .marquee-track,
+  [data-rule],
+  [data-service-card] {
+    transition-property: transform, filter, opacity !important;
+    transition-duration: 0.001ms !important;
+  }
+  /* Marquee freezes instead of snapping to 0 transform — display as a
+     static band rather than a flicker frame. */
+  .marquee-track {
+    animation: none !important;
+  }
+}
+
+/* Skill §14 — translucent chrome becomes solid for users who need full
+   opacity. The header is at 30% ink + backdrop-blur; the menu is at
+   70% ink. Both become fully opaque. The Navigation component also
+   checks `window.matchMedia("(prefers-reduced-motion: reduce)")` and
+   skips its GSAP work — this CSS handles the visual side. */
+@media (prefers-reduced-transparency: reduce) {
+  header[class*="backdrop-blur"] {
+    background-color: rgb(10 10 10 / 1) !important; /* solid ink */
+    backdrop-filter: none !important;
+  }
+  nav[id="site-menu"] {
+    background-color: rgb(10 10 10 / 1) !important; /* solid ink */
+    backdrop-filter: none !important;
+  }
+}
+
+/* Skill §14 — high-contrast users get a defined border instead of
+   relying on subtle color differences in `text-ink-40` (which dips
+   below 3:1 in places). Promotes to ink-60 and underlines interactive
+   elements so they remain distinguishable without color alone. */
+@media (prefers-contrast: more) {
+  .text-ink-40 {
+    color: #3C3A36; /* ink-60 — bumps contrast without losing hierarchy */
+  }
+  .text-paper\/60,
+  .text-paper\/70,
+  .text-paper\/80 {
+    color: #F7F5F2; /* solid paper */
+  }
+  button:not(:disabled),
+  a {
+    text-decoration: underline;
+    text-decoration-color: currentColor;
+    text-underline-offset: 4px;
   }
 }
 
@@ -70,10 +129,67 @@ body {
 }
 
 .marquee-track {
-  animation: marquee 40s linear infinite;
+  transform: translate3d(0, 0, 0);
+}
+.marquee-window {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
 }
 .marquee-track:hover {
   animation-play-state: paused;
+}
+
+/* Service hero geometry: restrained ambient drift for the rings and a
+   one-time draw-in for the diagonal rules. Transform-only motion keeps
+   the banner on the compositor and avoids layout work. */
+.service-orbit {
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+.service-orbit--outer {
+  animation: service-orbit-outer 14s ease-in-out infinite alternate;
+}
+.service-orbit--inner {
+  animation: service-orbit-inner 11s ease-in-out 0.6s infinite alternate;
+}
+.service-banner-rule {
+  transform-origin: bottom center;
+  will-change: transform, opacity;
+  animation: service-rule-draw 1.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.service-banner-rule--two {
+  animation-delay: 160ms;
+}
+
+@keyframes service-orbit-outer {
+  from { transform: translate3d(0, 0, 0) scale(1); opacity: 0.72; }
+  to { transform: translate3d(-1.25rem, 0.75rem, 0) scale(1.035); opacity: 1; }
+}
+
+@keyframes service-orbit-inner {
+  from { transform: translate3d(0, 0, 0) scale(1); opacity: 0.65; }
+  to { transform: translate3d(1rem, -0.5rem, 0) scale(0.97); opacity: 0.9; }
+}
+
+@keyframes service-rule-draw {
+  from { transform: rotate(24deg) scaleY(0); opacity: 0; }
+  to { transform: rotate(24deg) scaleY(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-window {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+    scrollbar-width: none;
+  }
+  .marquee-window::-webkit-scrollbar {
+    display: none;
+  }
+  .marquee-track > [aria-hidden="true"] {
+    display: none;
+  }
 }
 
 /* When the full-screen menu overlay is open, the cursor aperture inverts —

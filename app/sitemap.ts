@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { campaigns } from "@/lib/content";
+import { campaigns, services } from "@/lib/content";
 
 const staticRoutes = ["", "/about", "/services", "/work", "/press", "/contact"];
 
@@ -20,5 +20,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticEntries, ...campaignEntries];
+  const serviceEntries = services.map((service) => ({
+    url: `${base}/services/${service.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticEntries, ...campaignEntries, ...serviceEntries];
 }

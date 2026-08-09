@@ -29,7 +29,7 @@ export function Hero() {
         gsap.to(".reveal-word > span", {
           y: "0%",
           duration: 1,
-          ease: EASE_REVEAL_GSAP,
+          ease: EASE_REVEAL_GSAP, // expo.out — snappier settle than power3.out
           stagger: STAGGER.words,
           delay: 0.3,
         });
@@ -42,7 +42,7 @@ export function Hero() {
           imageRef.current,
           { y: 0 },
           {
-            y: -80,
+            y: 180,
             ease: "none",
             scrollTrigger: {
               trigger: rootRef.current,
@@ -87,7 +87,7 @@ export function Hero() {
       </div>
       <div className="absolute inset-0 z-[1] bg-gradient-to-t from-ink via-ink/40 to-transparent" />
 
-      <p className="eyebrow mb-6 z-40 text-paper/60">A Culturally Intelligent PR &amp; Marketing Agency</p>
+      <p className=" mb-6 z-40 text-eyebrow uppercase tracking-[0.18em] text-paper/60">A Culturally Intelligent PR &amp; Marketing Agency</p>
 
       <h1 className="max-w-5xl z-40 font-display text-display-1">
         {HEADLINE_LINES.map((line) => (
@@ -98,7 +98,7 @@ export function Hero() {
       </h1>
 
       <div className="mt-10 flex z-40 flex-col items-start justify-between gap-8 md:flex-row md:items-end">
-        <p className="max-w-md font-body text-body text-paper/80">
+        <p className="max-w-md text-body text-paper/80">
           A next-generation PR and marketing agency creating culturally intelligent
           campaigns across Africa, for brands who refuse to be seen the ordinary way.
         </p>
@@ -106,13 +106,13 @@ export function Hero() {
         <div className="flex z-40 gap-4">
           <a
             href="/work"
-            className="bg-paper px-6 py-3 font-mono text-caption uppercase tracking-[0.1em] text-ink transition-colors hover:bg-paper-dim focus-visible:bg-paper-dim"
+            className="inline-flex min-h-[44px] items-center bg-paper px-6 py-3  text-caption uppercase tracking-[0.1em] text-ink transition-[background-color,transform,box-shadow] duration-150 ease-out hover:bg-paper-dim focus-visible:bg-paper-dim active:scale-[0.98] active:bg-paper-dim"
           >
             View Work
           </a>
           <a
             href="/contact"
-            className="bg-rust-deep px-6 py-3 font-mono text-caption uppercase tracking-[0.1em] text-paper transition-colors hover:bg-ink-80 focus-visible:bg-ink-80"
+            className="inline-flex min-h-[44px] items-center bg-rust-deep px-6 py-3 text-caption uppercase tracking-[0.1em] text-paper transition-[background-color,transform,box-shadow] duration-150 ease-out hover:bg-ink-80 focus-visible:bg-ink-80 active:scale-[0.98] active:bg-ink-80"
           >
             Book Discovery Call
           </a>

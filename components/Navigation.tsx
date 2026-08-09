@@ -64,7 +64,7 @@ export function Navigation() {
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="site-menu"
-            className="font-mono text-eyebrow uppercase tracking-[0.18em] text-paper transition-colors hover:text-rust focus-visible:text-rust"
+            className="inline-flex min-h-[44px] items-center font-mono text-eyebrow uppercase tracking-[0.18em] text-paper transition-[color,transform] duration-150 ease-out hover:text-rust focus-visible:text-rust active:scale-[0.97]"
           >
             {open ? "Close" : "Menu"}
           </button>

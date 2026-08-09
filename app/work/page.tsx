@@ -19,7 +19,7 @@ export default function WorkPage() {
             key={cat}
             onClick={() => setFilter(cat)}
             aria-pressed={filter === cat}
-            className={`border px-4 py-2 font-mono text-caption uppercase tracking-[0.08em] transition-colors ${
+            className={`inline-flex min-h-[44px] items-center border px-5 py-3 font-mono text-caption uppercase tracking-[0.08em] transition-[background-color,color,border-color,transform] duration-150 ease-out active:scale-[0.98] ${
               filter === cat ? "border-ink bg-ink text-paper" : "border-paper-line text-ink-40 hover:border-ink"
             }`}
           >

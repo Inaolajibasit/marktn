@@ -48,6 +48,7 @@ const config: Config = {
         display: ["var(--font-fraunces)", "Georgia", "serif"],
         body: ["var(--font-instrument)", "Helvetica Neue", "sans-serif"],
         mono: ["var(--font-plex-mono)", "monospace"],
+        script: ["var(--font-meow-script)", "cursive"],
       },
       fontSize: {
         // Editorial scale — deliberately large at the top, tight at the bottom

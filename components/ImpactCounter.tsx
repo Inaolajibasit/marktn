@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { prefersReducedMotion } from "@/lib/motion";
+import { prefersReducedMotion, DURATION } from "@/lib/motion";
 import { impactStats } from "@/lib/content";
 import { initSectionRules } from "@/lib/sectionRules";
 
@@ -22,8 +22,8 @@ export function ImpactCounter() {
 
         gsap.to(counter, {
           val: target,
-          duration: prefersReducedMotion() ? 0 : 1.6,
-          ease: "power2.out",
+          duration: prefersReducedMotion() ? 0 : DURATION.slow, // 1.0 — was 1.6
+          ease: "expo.out", // snappier settle, spring-adjacent
           scrollTrigger: { trigger: node, start: "top 85%", once: true },
           onUpdate: () => {
             node.textContent = counter.val.toFixed(decimals);
@@ -51,13 +51,13 @@ export function ImpactCounter() {
       <dl className="grid grid-cols-2 gap-x-6 gap-y-12 md:grid-cols-5">
         {impactStats.map((stat) => (
           <div key={stat.label}>
-            <dt className="sr-only">{stat.label}</dt>
-            <dd className="font-display text-display-3 tabular-nums">
+            <dt className="sr-only ">{stat.label}</dt>
+            <dd className="font-display  text-display-3 tabular-nums">
               {stat.prefix}
               <span data-counter={stat.value} data-decimals={stat.decimals ?? 0}>
                 0
               </span>
-              {stat.suffix}
+              <p className="text-rust inline" >{stat.suffix}</p> 
             </dd>
             <p className="mt-2 font-mono text-caption uppercase tracking-[0.08em] text-ink-40">
               {stat.label}

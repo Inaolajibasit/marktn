@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { fraunces, instrument, plexMono } from "@/lib/fonts";
+import { fraunces, instrument, plexMono, meowScript } from "@/lib/fonts";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 import { CursorAperture } from "@/components/CursorAperture";
 import { Navigation } from "@/components/Navigation";
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${instrument.variable} ${plexMono.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${instrument.variable} ${plexMono.variable} ${meowScript.variable}`}>
       <body>
         {/* Skip link — first focusable element, required for keyboard users */}
         <a
