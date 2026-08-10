@@ -309,6 +309,35 @@ export function getServiceBySlug(slug: string) {
 
 export const brandPartners = ["LVMH", "L'Oréal", "Estée Lauder", "Dior", "Culture Custodian", "BeautyMatter"];
 
+export type Testimonial = {
+  quote: string;
+  name: string;
+  role: string;
+  context: string;
+};
+
+// Replace these anonymized placeholders with approved, attributed client quotes.
+export const testimonials: Testimonial[] = [
+  {
+    quote: "They understood the cultural nuance immediately—and translated it into a campaign that felt globally polished and unmistakably local.",
+    name: "Regional Brand Lead",
+    role: "Global Beauty Group",
+    context: "Market launch · West Africa",
+  },
+  {
+    quote: "The team brought clarity to a complex launch. Every detail, from the guest list to the press narrative, worked as one system.",
+    name: "Marketing Director",
+    role: "Luxury House",
+    context: "Experiential · Lagos",
+  },
+  {
+    quote: "marktn PR feels like an extension of our team: strategic when it matters, candid when we need it, and exceptional in execution.",
+    name: "Founder",
+    role: "Culture Platform",
+    context: "Integrated campaign · Africa",
+  },
+];
+
 export type ImpactStat = {
   value: number;
   prefix?: string;

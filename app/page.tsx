@@ -6,6 +6,8 @@ import { ImpactCounter } from "@/components/ImpactCounter";
 import { Services } from "@/components/Services";
 import { Founder } from "@/components/Founder";
 import { Press } from "@/components/Press";
+import { Testimonials } from "@/components/Testimonials";
+import { HomeBlog } from "@/components/HomeBlog";
 
 export const metadata: Metadata = {
   title: "marktn PR — Africa's Culturally Intelligent Luxury PR Agency",
@@ -19,10 +21,12 @@ export default function HomePage() {
     <>
       <Hero />
       <LogoMarquee />
-      <FeaturedWork />
-      <ImpactCounter />
       <Services />
+      <ImpactCounter />
+      <FeaturedWork />
       <Founder />
+      <Testimonials />
+      <HomeBlog />
       <Press />
     </>
   );

@@ -20,13 +20,14 @@ export function Footer() {
           <Link href="/services" className="hover:text-rust">Services</Link>
           <Link href="/work" className="hover:text-rust">Work</Link>
           <Link href="/press" className="hover:text-rust">Press</Link>
+          <Link href="/blog" className="hover:text-rust">Blog</Link>
         </nav>
 
         <div className="flex gap-x-8">
           <a href="mailto:hello@marktnpr.com" className="hover:text-rust">Email</a>
           <a href="https://linkedin.com/company/marktnpr" className="hover:text-rust">LinkedIn</a>
           <a href="https://instagram.com/marktnpr" className="hover:text-rust">Instagram</a>
-          <a href="https://wa.me/2340000000000" className="hover:text-rust">WhatsApp</a>
+          <a href="https://wa.me/2340000000000" className="hover:text-rust">WApp</a>
         </div>
       </div>
 

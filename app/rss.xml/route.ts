@@ -1,0 +1,5 @@
+import {sanityFetch} from "@/sanity/lib/fetch";
+import {postsQuery} from "@/sanity/lib/queries";
+import type {PostCard} from "@/sanity/lib/types";
+const escape=(s:string)=>s.replace(/[<>&'\"]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;","'":"&apos;",'"':"&quot;"}[c]!));
+export async function GET(){const posts=await sanityFetch<PostCard[]>({query:postsQuery});const base=process.env.NEXT_PUBLIC_SITE_URL||"https://www.marktnpr.com";const items=posts.map((p:PostCard)=>`<item><title>${escape(p.title)}</title><link>${base}/blog/${p.slug}</link><guid>${base}/blog/${p.slug}</guid><pubDate>${new Date(p.publishedAt).toUTCString()}</pubDate><description>${escape(p.excerpt)}</description></item>`).join("");return new Response(`<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>marktn PR Blog</title><link>${base}/blog</link><description>Perspectives on reputation, culture and communications.</description>${items}</channel></rss>`,{headers:{"content-type":"application/rss+xml; charset=utf-8"}})}

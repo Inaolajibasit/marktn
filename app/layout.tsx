@@ -4,6 +4,7 @@ import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 import { CursorAperture } from "@/components/CursorAperture";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { Analytics } from "@/components/Analytics";
 import "./globals.css";
 
 const SITE_URL = "https://www.marktnpr.com";
@@ -48,6 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${fraunces.variable} ${instrument.variable} ${plexMono.variable} ${meowScript.variable}`}>
       <body>
+        <Analytics />
         {/* Skip link — first focusable element, required for keyboard users */}
         <a
           href="#main-content"
