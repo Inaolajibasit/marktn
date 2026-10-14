@@ -13,7 +13,7 @@ const config: Config = {
           40: "#6A655D",
           20: "#AAA49A",
         },
-        paper: { DEFAULT: "#F5F1E9", dim: "#E9E2D3", line: "#DCD5C8" },
+        paper: { DEFAULT: "#F5F7FA", dim: "#E9EDF3", line: "#D8DFE8" },
         brand: { red: "#8D1212", yellow: "#FFC904", blue: "#59D5FF" },
         // Compatibility aliases keep existing rich-text and Studio-adjacent UI coherent.
         rust: { DEFAULT: "#8D1212", soft: "#FFC904", deep: "#741010" },
@@ -21,7 +21,7 @@ const config: Config = {
           DEFAULT: "#8D1212",
           soft: "#A32020",
           deep: "#171512",
-          line: "#DCD5C8",
+          line: "#D8DFE8",
         },
       },
       fontFamily: {

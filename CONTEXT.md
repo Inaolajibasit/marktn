@@ -73,12 +73,12 @@ The content setup is hybrid:
 - Complete redesign follows the Knack Marketing Framer reference for cream editorial sections, rounded project cards, receipt-style statistics, sticky coloured service panels, process/engagement cards, dark testimonials, contact form and oversized footer branding.
 - The homepage hero uses components/patternWaves.tsx (OGL/WebGL) as a decorative yellow pond-wave line background over the existing gradient, with pointer interaction disabled and built-in reduced-motion support. The gradient remains visible before canvas initialization.
 - The homepage hero follows the supplied Atlas Studio screenshot: black/burgundy grain background, compact navigation, left introduction and split CTA, right featured-project carousel, and an oversized official MARKTN wordmark.
-- Instrument Sans headlines and Inter body text; burgundy #8D1212, yellow #FFC904, blue #59D5FF, cream, black and white. The hero wordmark uses public/images/hero/LOGO-WHITE.svg; shared logos elsewhere use supplied PNGs without distortion or recolouring. Favicon uses the supplied K/asterisk mark.
+- Instrument Sans headlines and Inter body text; burgundy #8D1212, yellow #FFC904, blue #59D5FF, cool white #F5F7FA, black and white. Light surfaces use #E9EDF3 and borders #D8DFE8, synchronized between CSS variables and Tailwind colours. The hero wordmark uses public/images/hero/LOGO-WHITE.svg; shared logos elsewhere use supplied PNGs without distortion or recolouring. Favicon uses the supplied K/asterisk mark.
 - SiteShell provides public navigation, main, footer, smooth scrolling and RevealProvider. Studio gets a separate main without marketing chrome. CursorAperture remains unused; native cursors are used.
 - Lenis still integrates with the GSAP ticker; reduced-motion users receive native scrolling. RevealProvider uses IntersectionObserver and the Web Animations API, without mutating React-owned class/style attributes. A MutationObserver registers streamed and newly inserted reveal targets; animations and observers are cleaned up on navigation, unmount or a switch to reduced motion. Content remains visible without JavaScript or with reduced motion.
 - Featured projects use a two-column grid, category filtering and a manually controlled hero carousel. Service cards stack with sticky positioning on desktop and normal flow on mobile.
 - Shared UI lives in BrandUI, ContactForm, Process, Reveal and SiteShell. ContactForm works with React 18; service links preselect an enquiry category. Server actions check Resend errors before reporting success.
-- Mobile navigation traps focus, restores it on close, supports Escape and locks background scrolling. Forms provide labels, error focus and live status. Responsive and reduced-motion checks passed; this is not a full accessibility audit.
+- Mobile navigation slides in/out from the right with a no-bounce Framer Motion spring. Links reveal sequentially from blur to clarity; reduced-motion users receive short fades without slide, blur or stagger. The close button uses public/images/hero/ASTERISK-FULLCOLOR.svg. Focus trapping and background scroll locking remain active through exit, then focus returns to the trigger. Escape and route/link navigation close the menu. Forms provide labels, error focus and live status. Responsive and reduced-motion checks passed; this is not a full accessibility audit.
 
 ## Integrations and environment
 
@@ -158,3 +158,13 @@ Local reference screenshots and browser verification scripts/results are under i
 
 - Updated components/Hero.tsx to use the supplied public/images/hero/LOGO-WHITE.svg for the oversized hero logo, retaining its native 399:167 aspect ratio and priority loading. Shared BrandLogo consumers are unchanged. Recorded the current user-selected yellow pond/line wave settings.
 - Verification: confirmed the SVG exists, inspected its dimensions, and read back the hero reference. Runtime/build checks were not run for this asset substitution.
+
+### 2026-10-14 - Cool white palette
+
+- Updated app/globals.css and tailwind.config.ts to use cool white #F5F7FA with matching #E9EDF3 secondary surfaces and #D8DFE8 borders, including the Tailwind compatibility border alias. Preserved the existing user edit to the CSS paper colour.
+- Verification: read back both files and checked the expected CSS tokens and removal of the previous cream Tailwind tokens. Browser and production build checks were not run for this colour-only change.
+
+### 2026-10-14 - Animated mobile navigation
+
+- Updated components/Navigation.tsx with AnimatePresence right-side entry/exit, staggered blur-to-clear navigation links, reduced-motion fades and the supplied full-colour asterisk close icon. Kept focus trapping and scroll lock until exit completes. Updated app/globals.css for a centered close icon and 44px touch target.
+- Verification: read back the implementation and confirmed the SVG asset exists. Full typecheck could not run because the shell helper failed to start; an alternate TypeScript module import exposed no checker API. Browser interactions and production build were not verified.

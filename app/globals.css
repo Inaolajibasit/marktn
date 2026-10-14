@@ -5,9 +5,9 @@
 :root {
   color-scheme: light;
   --ink: #171512;
-  --paper: #f5f1e9;
-  --surface: #e9e2d3;
-  --line: #dcd5c8;
+  --paper: #f5f7fa;
+  --surface: #e9edf3;
+  --line: #d8dfe8;
   --muted: #6a655d;
   --red: #8d1212;
   --yellow: #ffc904;
@@ -67,7 +67,7 @@ h4 {
   font-style: normal;
 }
 .site-shell {
-  max-width: 1760px;
+  /* max-width: 1760px; */
   margin-inline: auto;
   background: var(--paper);
   overflow: clip;
@@ -210,7 +210,7 @@ h4 {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 1760px;
+  /* max-width: 1760px; */
   background: var(--paper);
   color: var(--ink);
   transition:
@@ -308,6 +308,9 @@ h4 {
   width: 130px;
 }
 .mobile-menu-top button {
+  display: grid;
+  place-items: center;
+  min-width: 44px;
   min-height: 44px;
   padding: 8px;
 }

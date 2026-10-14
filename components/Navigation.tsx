@@ -2,8 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { SPRING, STAGGER } from "@/lib/motion";
 import { usePathname } from "next/navigation";
 import { BrandLogo, ButtonLink, Arrow } from "./BrandUI";
+
+const MotionLink = motion.create(Link);
 
 const links = [
   { href: "/", label: "Home" },
@@ -16,6 +21,12 @@ const links = [
 export function Navigation() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [present, setPresent] = useState(false);
+  const reducedMotion = useReducedMotion();
+  const itemVariants = {
+    hidden: { opacity: 0, x: reducedMotion ? 0 : 18, filter: reducedMotion ? "blur(0px)" : "blur(8px)" },
+    visible: { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: reducedMotion ? 0.1 : 0.35 } },
+  };
   const [scrolled, setScrolled] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -31,7 +42,7 @@ export function Navigation() {
     setOpen(false);
   }, [pathname]);
   useEffect(() => {
-    if (!open) return;
+    if (!present) return;
     const trigger = toggleRef.current;
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -58,7 +69,7 @@ export function Navigation() {
       window.removeEventListener("keydown", onKey);
       trigger?.focus();
     };
-  }, [open]);
+  }, [present]);
 
   return (
     <>
@@ -94,15 +105,27 @@ export function Navigation() {
               className="menu-toggle"
               aria-expanded={open}
               aria-controls="mobile-menu"
-              onClick={() => setOpen(!open)}
+              onClick={() => {
+                setPresent(true);
+                setOpen(true);
+              }}
             >
               Menu<span aria-hidden>+</span>
             </button>
           </div>
         </div>
       </header>
+      <AnimatePresence onExitComplete={() => setPresent(false)}>
       {open && (
-        <div
+        <motion.div
+          key="mobile-menu"
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          variants={{
+            hidden: { x: reducedMotion ? 0 : "100%", opacity: reducedMotion ? 0 : 1, transition: reducedMotion ? { duration: 0.1 } : { ...SPRING.ui, type: "spring" as const } },
+            visible: { x: 0, opacity: 1, transition: { ...(reducedMotion ? { duration: 0.1 } : { ...SPRING.ui, type: "spring" as const }), delayChildren: reducedMotion ? 0 : 0.12, staggerChildren: reducedMotion ? 0 : STAGGER.cards } },
+          }}
           ref={menuRef}
           id="mobile-menu"
           data-lenis-prevent
@@ -118,12 +141,18 @@ export function Navigation() {
               onClick={() => setOpen(false)}
               aria-label="Close menu"
             >
-              Close ×
+              <Image
+                src="/images/hero/ASTERISK-FULLCOLOR.svg"
+                alt=""
+                width={32}
+                height={32}
+                className="mobile-menu-close-icon"
+              />
             </button>
           </div>
           <nav aria-label="Mobile navigation">
             {links.map((link, i) => (
-              <Link
+              <MotionLink variants={itemVariants}
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
@@ -131,18 +160,19 @@ export function Navigation() {
                 <span>0{i + 1}</span>
                 {link.label}
                 <Arrow />
-              </Link>
+              </MotionLink>
             ))}
-            <Link href="/contact" onClick={() => setOpen(false)}>
+            <MotionLink variants={itemVariants} href="/contact" onClick={() => setOpen(false)}>
               <span>06</span>Contact
               <Arrow />
-            </Link>
+            </MotionLink>
           </nav>
           <a className="mobile-menu-email" href="mailto:hello@marktnpr.com">
             hello@marktnpr.com
           </a>
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
     </>
   );
 }
