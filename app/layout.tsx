@@ -1,24 +1,22 @@
 import type { Metadata } from "next";
-import { fraunces, instrument, plexMono, meowScript } from "@/lib/fonts";
-import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
-import { CursorAperture } from "@/components/CursorAperture";
-import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
+import { instrument, inter } from "@/lib/fonts";
+import { SiteShell } from "@/components/SiteShell";
 import { Analytics } from "@/components/Analytics";
 import "./globals.css";
 
-const SITE_URL = "https://www.marktnpr.com";
-const SITE_TITLE = "marktn PR — Perception Is Different.";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.marktnpr.com";
+const SITE_TITLE = "MARKTN — Beyond the brief.";
 const SITE_DESCRIPTION =
-  "marktn PR is Africa's culturally intelligent luxury PR and marketing agency, building campaigns for global and African brands across fashion, beauty, hospitality and entertainment.";
+  "MARKTN is Africa's culturally intelligent luxury PR and marketing agency, building campaigns for global and African brands across fashion, beauty, hospitality and entertainment.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: SITE_TITLE,
-    template: "%s — marktn PR",
+    template: "%s — MARKTN",
   },
   description: SITE_DESCRIPTION,
+  icons: { icon: "/images/hero/favico.png", apple: "/images/hero/favico.png" },
   keywords: [
     "marktn PR",
     "luxury PR agency Africa",
@@ -32,8 +30,15 @@ export const metadata: Metadata = {
     url: SITE_URL,
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    siteName: "marktn PR",
-    images: [{ url: "/og/marktn-pr-og.jpg", width: 1200, height: 630, alt: "marktn PR" }],
+    siteName: "MARKTN",
+    images: [
+      {
+        url: "/images/hero/hero.png",
+        width: 1200,
+        height: 630,
+        alt: "MARKTN — Beyond the brief",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -45,9 +50,13 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${instrument.variable} ${plexMono.variable} ${meowScript.variable}`}>
+    <html lang="en" className={`${instrument.variable} ${inter.variable}`}>
       <body>
         <Analytics />
         {/* Skip link — first focusable element, required for keyboard users */}
@@ -58,12 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
 
-        <SmoothScrollProvider>
-          <CursorAperture />
-          <Navigation />
-          <main id="main-content">{children}</main>
-          <Footer />
-        </SmoothScrollProvider>
+        <SiteShell>{children}</SiteShell>
 
         <script
           type="application/ld+json"
@@ -72,9 +76,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "marktn PR",
+              name: "MARKTN",
+              alternateName: "marktn PR",
               url: SITE_URL,
-              slogan: "Perception is Different.",
+              slogan: "Beyond the brief.",
               founder: { "@type": "Person", name: "Onyeka Nwonah" },
               sameAs: [
                 "https://www.instagram.com/marktnpr",

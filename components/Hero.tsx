@@ -1,122 +1,128 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useState } from "react";
+import PatternWaves from "./patternWaves";
 import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { EASE_REVEAL_GSAP, STAGGER, prefersReducedMotion } from "@/lib/motion";
+import Link from "next/link";
+import { Arrow, ButtonLink } from "./BrandUI";
+import { featuredCampaigns } from "@/lib/content";
 
-// ScrollTrigger is registered once in SmoothScrollProvider — no need
-// to re-register here. Multiple module-level registrations across
-// components can race on the first navigation and trip a DOM
-// removeChild error.
-
-const HEADLINE_LINES = ["Perception", "Is Different."];
-
-/**
- * Signature moment: the hero image loads fully desaturated and slightly
- * misaligned (a "misperception"), and resolves to full colour and correct
- * registration as the visitor scrolls — the one idea the whole site is
- * named after, made literal in the first five seconds.
- */
 export function Hero() {
-  const rootRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      if (!prefersReducedMotion()) {
-        gsap.to(".reveal-word > span", {
-          y: "0%",
-          duration: 1,
-          ease: EASE_REVEAL_GSAP, // expo.out — snappier settle than power3.out
-          stagger: STAGGER.words,
-          delay: 0.3,
-        });
-
-        // Subtle parallax: the hero image lags behind the foreground text
-        // as the section scrolls past. Translates -80px over the section's
-        // full height so the photo settles higher than the headline by
-        // the time the next section enters.
-        gsap.fromTo(
-          imageRef.current,
-          { y: 0 },
-          {
-            y: 180,
-            ease: "none",
-            scrollTrigger: {
-              trigger: rootRef.current,
-              start: "top top",
-              end: "bottom top",
-              scrub: 0.6,
-            },
-          }
-        );
-      } else {
-        gsap.set(".reveal-word > span", { y: "0%" });
-      }
-    }, rootRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  // Same defensive pattern as FeaturedWork: kill this section's
-  // ScrollTriggers synchronously on unmount (layout effect runs before
-  // React's commit-phase DOM mutation) so navigation can't race with
-  // GSAP's own trigger teardown.
-  useLayoutEffect(() => {
-    const trigger = rootRef.current;
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => {
-        if (t.trigger === trigger) t.kill();
-      });
-    };
-  }, []);
-
+  const [active, setActive] = useState(0);
+  const campaign = featuredCampaigns[active];
   return (
-    <section ref={rootRef} className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden bg-ink px-gutter pb-16 pt-32 text-paper">
-      <div ref={imageRef} data-cursor="media" className="absolute inset-0 z-0 opacity-70">
-        <Image
-          src="/images/hero/campaign.jpg"
-          alt="Still from a marktn PR campaign film"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
+    <section className="home-hero" aria-labelledby="hero-title">
+      <div className="hero-background" aria-hidden="true">
+        <PatternWaves
+          preset="pond"
+          pattern="line"
+          color="#FFc904"
+          backgroundColor="transparent"
+          opacity={0.65}
+          interactive={false}
+          intro={false}
         />
       </div>
-      <div className="absolute inset-0 z-[1] bg-gradient-to-t from-ink via-ink/40 to-transparent" />
-
-      <p className=" mb-6 z-40 text-eyebrow uppercase tracking-[0.18em] text-paper/60">A Culturally Intelligent PR &amp; Marketing Agency</p>
-
-      <h1 className="max-w-5xl z-40 font-display text-display-1">
-        {HEADLINE_LINES.map((line) => (
-          <span key={line} className="reveal-word block">
-            <span>{line}</span>
-          </span>
-        ))}
-      </h1>
-
-      <div className="mt-10 flex z-40 flex-col items-start justify-between gap-8 md:flex-row md:items-end">
-        <p className="max-w-md text-body text-paper/80">
-          A next-generation PR and marketing agency creating culturally intelligent
-          campaigns across Africa, for brands who refuse to be seen the ordinary way.
-        </p>
-
-        <div className="flex z-40 gap-4">
-          <a
-            href="/work"
-            className="inline-flex min-h-[44px] items-center bg-paper px-6 py-3  text-caption uppercase tracking-[0.1em] text-ink transition-[background-color,transform,box-shadow] duration-150 ease-out hover:bg-paper-dim focus-visible:bg-paper-dim active:scale-[0.98] active:bg-paper-dim"
-          >
-            View Work
-          </a>
-          <a
-            href="/contact"
-            className="inline-flex min-h-[44px] items-center bg-rust-deep px-6 py-3 text-caption uppercase tracking-[0.1em] text-paper transition-[background-color,transform,box-shadow] duration-150 ease-out hover:bg-ink-80 focus-visible:bg-ink-80 active:scale-[0.98] active:bg-ink-80"
-          >
-            Book Discovery Call
-          </a>
+      <div className="hero-top">
+        <div className="hero-introduction">
+          {/* <p className="hero-eyebrow">
+            <span className="status-dot" />
+            Culturally fluent. Creatively fearless.
+          </p> */}
+          <h1 id="hero-title">
+            Building brands through
+            <br className="desktop-break" /> culture, strategy &amp; stories
+            <br className="desktop-break" /> that go beyond the brief.
+          </h1>
+          <div className="hero-action-row">
+            <ButtonLink href="/contact" variant="yellow" split>
+              Let’s talk
+            </ButtonLink>
+            <div className="hero-proof">
+              <strong>40+ campaigns</strong>
+              <span>Across 4 African markets</span>
+            </div>
+          </div>
         </div>
+        <div className="hero-feature">
+          <Link
+            href={"/work/" + campaign.slug}
+            className="hero-feature-card"
+            aria-label={"Explore " + campaign.client + " case study"}
+          >
+            <div className="hero-feature-image">
+              <Image
+                key={campaign.slug}
+                src={
+                  [
+                    "/images/hero/hero.png",
+                    "/images/hero/hero1.png",
+                    "/images/hero/hero2.png",
+                  ][active]
+                }
+                alt={"MARKTN brand artwork for " + campaign.client}
+                fill
+                sizes="(max-width: 600px) 90vw, (max-width: 1000px) 42vw, 360px"
+                priority={active === 0}
+                className="object-cover"
+              />
+              <span className="hero-feature-stat">
+                <Arrow />
+                {campaign.stat}
+              </span>
+            </div>
+            <div className="hero-feature-caption">
+              <div>
+                <span>Selected project / 0{active + 1}</span>
+                <h2>{campaign.client}</h2>
+              </div>
+              <Arrow />
+            </div>
+          </Link>
+          <div className="hero-feature-controls">
+            <span aria-live="polite">
+              0{active + 1} / 0{featuredCampaigns.length}
+            </span>
+            <button
+              type="button"
+              aria-label="Previous featured project"
+              onClick={() =>
+                setActive(
+                  (active - 1 + featuredCampaigns.length) %
+                    featuredCampaigns.length,
+                )
+              }
+            >
+              <Arrow direction="left" />
+            </button>
+            <button
+              type="button"
+              aria-label="Next featured project"
+              onClick={() => setActive((active + 1) % featuredCampaigns.length)}
+            >
+              <Arrow direction="right" />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="hero-signature">
+        {/* <p className="hero-tagline">Beyond the brief.</p> */}
+        <Image
+          src="/images/hero/LOGO-WHITE.svg"
+          alt="MARKTN"
+          width={399}
+          height={167}
+          className="brand-logo hero-wordmark"
+          priority
+        />
+      </div>
+      <div className="hero-disciplines">
+        <span>Public relations</span>
+        <i aria-hidden /> <span>Brand strategy</span>
+        <i aria-hidden />
+        <span>Experiential</span>
+        <i aria-hidden />
+        <span>Culture &amp; campaigns</span>
       </div>
     </section>
   );

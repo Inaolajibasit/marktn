@@ -1,12 +1,44 @@
 import Link from "next/link";
-import type {PostCard as PostCardType} from "@/sanity/lib/types";
-import {ArticleImage} from "./ArticleImage";
+import type { PostCard as PostCardType } from "@/sanity/lib/types";
+import { ArticleImage } from "./ArticleImage";
 
-export function PostCard({post,large=false}:{post:PostCardType;large?:boolean}){return <article className="group">
-  <Link href={`/blog/${post.slug}`} className="block" data-cursor="click">
-    <ArticleImage image={post.featuredImage} title={post.title} className={large?"aspect-[16/9]":"aspect-[4/3]"}/>
-    <div className="mt-5 flex items-center gap-3 font-mono text-caption uppercase tracking-wider text-ink-40"><span className="text-rust">{post.category?.title||"Insight"}</span><span aria-hidden>·</span><time dateTime={post.publishedAt}>{new Intl.DateTimeFormat("en",{dateStyle:"medium"}).format(new Date(post.publishedAt))}</time></div>
-    <h2 className={`${large?"text-display-3":"text-3xl"} mt-3 font-display leading-tight transition-colors group-hover:text-rust`}>{post.title}</h2>
-    <p className="mt-3 max-w-2xl leading-7 text-ink-60">{post.excerpt}</p>
-  </Link>
-</article>}
+export function PostCard({
+  post,
+  large = false,
+}: {
+  post: PostCardType;
+  large?: boolean;
+}) {
+  const date = new Intl.DateTimeFormat("en", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(new Date(post.publishedAt));
+  const copy = (
+    <div className="article-card-copy">
+      <div className="article-card-meta">
+        <span>{post.category?.title || "Perspective"}</span>
+        <time dateTime={post.publishedAt}>{date}</time>
+      </div>
+      <h3>
+        <Link href={"/blog/" + post.slug}>{post.title}</Link>
+      </h3>
+      {large && <p>{post.excerpt}</p>}
+    </div>
+  );
+  return (
+    <article
+      className={"article-card" + (large ? " article-card--large" : "")}
+      data-reveal
+    >
+      <Link href={"/blog/" + post.slug} aria-label={"Read " + post.title}>
+        <ArticleImage
+          image={post.featuredImage}
+          title={post.title}
+          className="article-card-image"
+        />
+      </Link>
+      {copy}
+    </article>
+  );
+}

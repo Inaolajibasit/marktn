@@ -1,3 +1,59 @@
 "use client";
-import {useEffect,useState} from "react";
-export function ReadingTools({title}:{title:string}){const [progress,setProgress]=useState(0);const [copied,setCopied]=useState(false);useEffect(()=>{const update=()=>{const article=document.querySelector("[data-article]") as HTMLElement|null;if(!article)return;const top=article.offsetTop;const distance=article.offsetHeight-window.innerHeight;setProgress(Math.max(0,Math.min(100,((scrollY-top)/Math.max(distance,1))*100)))};update();addEventListener("scroll",update,{passive:true});return()=>removeEventListener("scroll",update)},[]);async function share(){if(navigator.share)await navigator.share({title,url:location.href});else{await navigator.clipboard.writeText(location.href);setCopied(true)}}return <><div className="fixed inset-x-0 top-0 z-[100] h-1 bg-transparent" aria-hidden><div className="h-full bg-rust" style={{width:`${progress}%`}}/></div><button onClick={share} className="fixed bottom-6 right-6 z-40 rounded-full bg-ink px-5 py-3 font-mono text-caption uppercase text-paper shadow-lg">{copied?"Copied":"Share"}</button></>}
+
+import { useEffect, useState } from "react";
+export function ReadingTools({ title }: { title: string }) {
+  const [progress, setProgress] = useState(0);
+  const [message, setMessage] = useState("Share");
+  useEffect(() => {
+    const update = () => {
+      const article = document.querySelector<HTMLElement>("[data-article]");
+      if (!article) return;
+      const top = article.getBoundingClientRect().top + window.scrollY;
+      setProgress(
+        Math.max(
+          0,
+          Math.min(
+            100,
+            ((window.scrollY - top) /
+              Math.max(article.offsetHeight - window.innerHeight, 1)) *
+              100,
+          ),
+        ),
+      );
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+  async function share() {
+    try {
+      if (navigator.share) await navigator.share({ title, url: location.href });
+      else {
+        await navigator.clipboard.writeText(location.href);
+        setMessage("Link copied");
+      }
+    } catch (error) {
+      if (!(error instanceof DOMException && error.name === "AbortError"))
+        setMessage("Please copy the page URL");
+    }
+  }
+  return (
+    <>
+      <div className="reading-progress" aria-hidden="true">
+        <div style={{ width: progress + "%" }} />
+      </div>
+      <button
+        type="button"
+        onClick={share}
+        className="share-button"
+        aria-live="polite"
+      >
+        {message} ↗
+      </button>
+    </>
+  );
+}

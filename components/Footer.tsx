@@ -1,39 +1,77 @@
 import Link from "next/link";
+import { BrandLogo, ButtonLink } from "./BrandUI";
 
 export function Footer() {
   return (
-    <footer className="bg-ink px-gutter pb-10 pt-section text-paper">
-      <Link href="/contact" className="group block" data-cursor="click">
-        <h2 className="max-w-4xl font-display text-display-2 italic transition-colors group-hover:text-rust">
-          Let&rsquo;s build something that shifts perception.
+    <footer className="site-footer">
+      <div className="footer-top">
+        <h2>
+          Got something
+          <br />
+          <span>worth going beyond?</span>
         </h2>
-      </Link>
-
-      <div className="mt-16 flex flex-col gap-10 border-t border-paper/15 pt-10 font-mono text-caption uppercase tracking-[0.08em] text-paper/60 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="text-paper">marktn PR</p>
-          <p className="mt-1">Lagos, Nigeria</p>
-        </div>
-
-        <nav aria-label="Footer" className="flex flex-wrap gap-x-8 gap-y-2">
-          <Link href="/about" className="hover:text-rust">About</Link>
-          <Link href="/services" className="hover:text-rust">Services</Link>
-          <Link href="/work" className="hover:text-rust">Work</Link>
-          <Link href="/press" className="hover:text-rust">Press</Link>
-          <Link href="/blog" className="hover:text-rust">Blog</Link>
-        </nav>
-
-        <div className="flex gap-x-8">
-          <a href="mailto:hello@marktnpr.com" className="hover:text-rust">Email</a>
-          <a href="https://linkedin.com/company/marktnpr" className="hover:text-rust">LinkedIn</a>
-          <a href="https://instagram.com/marktnpr" className="hover:text-rust">Instagram</a>
-          <a href="https://wa.me/2340000000000" className="hover:text-rust">WApp</a>
+          <ButtonLink href="/contact" variant="light">
+            Let’s make it happen
+          </ButtonLink>
+          <a className="footer-email" href="mailto:hello@marktnpr.com">
+            hello@marktnpr.com
+          </a>
         </div>
       </div>
-
-      <p className="mt-10 font-mono text-caption text-paper/30">
-        © {new Date().getFullYear()} marktn PR. All rights reserved.
-      </p>
+      <div className="footer-columns">
+        <div>
+          <h3>Our world</h3>
+          <p>Lagos, Nigeria</p>
+          <p>Rooted in Africa.</p>
+          <p>Connected to the world.</p>
+        </div>
+        <div>
+          <h3>Explore</h3>
+          <Link href="/work">Projects</Link>
+          <Link href="/services">Services</Link>
+          <Link href="/about">About</Link>
+          <Link href="/press">Press</Link>
+          <Link href="/blog">Journal</Link>
+        </div>
+        <div>
+          <h3>Stay connected</h3>
+          <a
+            href="https://www.instagram.com/marktnpr"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Instagram ↗
+          </a>
+          <a
+            href="https://www.linkedin.com/company/marktnpr"
+            target="_blank"
+            rel="noreferrer"
+          >
+            LinkedIn ↗
+          </a>
+          <Link href="/contact">Start a conversation ↗</Link>
+        </div>
+        <div>
+          <h3>Beyond the brief</h3>
+          <p>
+            Another angle. A better question.
+            <br />
+            Something worth paying attention to.
+          </p>
+          <Link href="/blog" className="footer-journal-link">
+            Read our latest thinking ↗
+          </Link>
+        </div>
+      </div>
+      <div className="footer-wordmark">
+        <BrandLogo light />
+      </div>
+      <div className="footer-bottom">
+        <span>© {new Date().getFullYear()} MARKTN. All rights reserved.</span>
+        <span>Beyond the brief.</span>
+        <a href="#main-content">Back to top ↑</a>
+      </div>
     </footer>
   );
 }

@@ -1,21 +1,25 @@
 import type { Metadata } from "next";
+import { PageIntro } from "@/components/BrandUI";
 import { Services } from "@/components/Services";
+import { Process } from "@/components/Process";
 
 export const metadata: Metadata = {
   title: "Services",
-  description: "Public relations, experiential, brand strategy and integrated campaign services from marktn PR.",
+  description:
+    "PR, brand strategy, experiences and campaigns built around culture and your next move.",
+  alternates: { canonical: "/services" },
 };
-
 export default function ServicesPage() {
   return (
-    <div className="pt-32">
-      <section className="px-gutter pb-section">
-        <p className="eyebrow mb-6">Capabilities</p>
-        <h1 className="max-w-3xl font-display text-display-2">
-          Full-service, from first insight to final press clip.
-        </h1>
-      </section>
+    <>
+      <PageIntro
+        eyebrow="Our capabilities"
+        title="All the right angles."
+        accent="One connected team."
+        description="From the first strategic question to the final detail. We connect the disciplines that help your brand go further."
+      />
       <Services />
-    </div>
+      <Process />
+    </>
   );
 }

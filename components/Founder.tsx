@@ -1,74 +1,52 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { founder } from "@/lib/content";
-import { initSectionRules } from "@/lib/sectionRules";
+import { ButtonLink, SectionHeading } from "./BrandUI";
 
-// ScrollTrigger is registered once in SmoothScrollProvider.
-
-/**
- * The Founder panel is the ONE full-bleed teal surface on the site. It
- * earns its place here because:
- *  - it sits between two dense paper sections (Services, Press), giving
- *    the eye a deliberate "breath" as it scrolls
- *  - portrait + paper-on-deep-teal is editorial-magazine standard
- *  - the existing rust accents (hover states on links) read well against teal
- *
- * Everywhere else on the site, teal is restricted to the cursor zone
- * indicator and a few small marks — same discipline as rust.
- */
 export function Founder() {
-  const rootRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      initSectionRules(rootRef.current);
-    });
-    return () => ctx.revert();
-  }, []);
-
   return (
     <section
-      ref={rootRef}
-      data-cursor-zone="teal"
-      className="grid grid-cols-1 gap-12 border-t border-teal/40 bg-teal-deep px-gutter py-section text-paper md:grid-cols-12"
+      className="content-section founder-section"
+      aria-labelledby="founder-title"
     >
-      <div className="md:col-span-5">
-        <div data-cursor="media" className="relative aspect-[4/5] w-full overflow-hidden">
+      <SectionHeading
+        eyebrow="The people behind the perspective"
+        id="founder-title"
+        title="Rooted in culture."
+        accent="Built for what’s next."
+      >
+        <p>
+          Deep local understanding. Global creative ambition. A team that gets
+          close to your brand and goes further with it.
+        </p>
+      </SectionHeading>
+      <div className="founder-grid">
+        <div className="founder-image" data-reveal>
           <Image
-            src={founder.portrait}
-            alt={`Portrait of ${founder.name}, Founder of marktn PR`}
+            src="/images/hero/hero1.png"
+            alt="MARKTN red and gold brand artwork"
             fill
-            sizes="(min-width: 768px) 40vw, 100vw"
+            sizes="(max-width: 700px) 90vw, 40vw"
             className="object-cover"
           />
+          <div className="founder-image-label">
+            <strong>Culture moves markets.</strong>
+            <span>Beyond the brief.</span>
+          </div>
         </div>
-      </div>
-
-      <div className="md:col-span-7">
-        <p className="eyebrow mb-2 text-paper/60">The Founder</p>
-        <span
-          aria-hidden
-          data-rule
-          className="mb-8 block h-px w-12 bg-rust"
-        />
-        <h2 className="font-display text-display-3 italic">{founder.name}</h2>
-        <p className="mt-6 max-w-xl font-body text-body text-paper/70">{founder.bio}</p>
-
-        <ol className="mt-10 space-y-6">
-          {founder.timeline.map((item) => (
-            <li
-              key={item.year}
-              className="grid grid-cols-[4rem,1fr] gap-4 border-t border-teal/30 pt-4 first:border-t-0 first:pt-0"
-            >
-              <span className="font-mono text-caption text-paper/60">{item.year}</span>
-              <span className="font-body text-body">{item.event}</span>
-            </li>
-          ))}
-        </ol>
+        <div className="founder-copy" data-reveal>
+          <p className="eyebrow">Founded by {founder.name}</p>
+          <h3>
+            The brief is where
+            <br />
+            we start.
+            <br />
+            <span className="accent-text">Not where we stop.</span>
+          </h3>
+          <p>{founder.bio}</p>
+          <ButtonLink href="/about" variant="outline">
+            Meet MARKTN
+          </ButtonLink>
+        </div>
       </div>
     </section>
   );

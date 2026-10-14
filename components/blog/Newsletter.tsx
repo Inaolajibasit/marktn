@@ -1,3 +1,72 @@
 "use client";
-import {useState} from "react";
-export function Newsletter(){const [status,setStatus]=useState("");async function submit(e:React.FormEvent<HTMLFormElement>){e.preventDefault();setStatus("Submitting…");const form=e.currentTarget;const fd=new FormData(form);try{const res=await fetch("/api/newsletter",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({email:fd.get("email")})});const data=await res.json().catch(()=>({}));setStatus(res.ok?"You’re on the list.":data.error||"Something went wrong. Please try again.");if(res.ok)form.reset()}catch{setStatus("Could not connect. Please try again.")}}return <section className="bg-ink px-gutter py-16 text-paper"><div className="mx-auto max-w-4xl md:flex md:items-end md:justify-between md:gap-16"><div><p className="font-mono text-caption uppercase tracking-widest text-rust">The signal</p><h2 className="mt-3 font-display text-4xl italic">Useful thinking, occasionally.</h2><p className="mt-3 text-paper/60">Sharp perspectives on reputation, culture and communications.</p></div><form onSubmit={submit} className="mt-8 min-w-0 flex-1 md:mt-0"><label htmlFor="newsletter-email" className="sr-only">Email address</label><div className="flex border-b border-paper/40"><input id="newsletter-email" name="email" type="email" required placeholder="Your email address" className="min-w-0 flex-1 bg-transparent py-3 text-paper placeholder:text-paper/40 focus:outline-none"/><button className="px-3 font-mono text-caption uppercase text-rust">Subscribe</button></div><p role="status" className="mt-2 min-h-5 font-mono text-caption text-paper/60">{status}</p></form></div></section>}
+
+import { useState, type FormEvent } from "react";
+import { Arrow } from "../BrandUI";
+
+export function Newsletter() {
+  const [status, setStatus] = useState("");
+  const [pending, setPending] = useState(false);
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (pending) return;
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    setPending(true);
+    setStatus("Adding you to the list…");
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ email: data.get("email") }),
+      });
+      const result = await response.json();
+      setStatus(
+        response.ok
+          ? "You’re on the list. Good things to come."
+          : result.error || "Something went wrong. Please try again.",
+      );
+      if (response.ok) form.reset();
+    } catch {
+      setStatus("Could not connect. Please try again.");
+    } finally {
+      setPending(false);
+    }
+  }
+  return (
+    <section className="newsletter-section">
+      <div>
+        <p className="eyebrow">The signal</p>
+        <h2>
+          A fresh perspective.
+          <br />
+          Every now and then.
+        </h2>
+        <p>Useful thinking on culture, reputation and communications.</p>
+      </div>
+      <form onSubmit={submit} aria-busy={pending}>
+        <label htmlFor="newsletter-email">Your email address</label>
+        <div className="newsletter-field">
+          <input
+            id="newsletter-email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            required
+            placeholder="you@company.com"
+            disabled={pending}
+          />
+          <button
+            type="submit"
+            aria-label="Subscribe to the newsletter"
+            disabled={pending}
+          >
+            <Arrow />
+          </button>
+        </div>
+        <p role="status" aria-live="polite">
+          {status}
+        </p>
+      </form>
+    </section>
+  );
+}
