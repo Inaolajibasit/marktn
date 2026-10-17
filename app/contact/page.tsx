@@ -8,8 +8,14 @@ export default async function ContactPage({
   searchParams: Promise<{ service?: string }>;
 }) {
   const { service } = await searchParams;
-  const initialService = services.some((item) => item.slug === service)
-    ? service
+  const requestedService =
+    service === "media-relations"
+      ? "public-relations"
+      : service === "brand-strategy" || service === "consulting"
+        ? "integrated-campaigns"
+        : service;
+  const initialService = services.some((item) => item.slug === requestedService)
+    ? requestedService
     : "";
   return (
     <>

@@ -36,7 +36,7 @@ export function ContactForm({
       setState({
         status: "error",
         message:
-          "We couldn’t send your message. Please try again or email hello@marktnpr.com.",
+          "We couldn’t send your message. Please try again or email Info@marktn.com.",
       });
     } finally {
       setPending(false);
@@ -200,7 +200,7 @@ export function ContactSection({
     >
       <div className="contact-panel">
         <div className="contact-introduction">
-          <p className="eyebrow">The next great idea starts here</p>
+          <p className="eyebrow">Crazy ideas? Pitches? Collaborations?</p>
           <h2 id="contact-title">
             Tell us what
             <br />
@@ -210,10 +210,10 @@ export function ContactSection({
             A new market. A bigger story. A brand ready for its next chapter.
             We’d love to hear what you’re working on.
           </p>
-          <a href="mailto:hello@marktnpr.com">hello@marktnpr.com</a>
+          <a href="mailto:Info@marktn.com">Info@marktn.com</a>
           <span className="contact-response">
             <span className="status-dot" />
-            We reply within two business days.
+            Let’s go beyond the brief.
           </span>
         </div>
         <ContactForm initialService={initialService} />

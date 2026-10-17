@@ -1,6 +1,6 @@
 # Codebase context
 
-Last updated: 2026-10-14
+Last updated: 2026-10-17
 
 ## Maintenance
 
@@ -10,7 +10,7 @@ This document describes the implementation. Maintenance is an agent workflow req
 
 ## Purpose
 
-marktn PR is a public marketing and portfolio website for an African luxury PR and communications agency. It presents services, campaigns, founder information, press coverage, testimonials, and impact statistics; publishes articles; and collects enquiries and newsletter subscriptions.
+MARKTN is a public marketing and portfolio website for a marketing and public relations company founded in 2026, serving Nigerian and broader African audiences across industries. It presents services, campaigns, founder information, press coverage, testimonials, and impact statistics; publishes articles; and collects enquiries and newsletter subscriptions.
 
 ## Stack and commands
 
@@ -19,8 +19,8 @@ marktn PR is a public marketing and portfolio website for an African luxury PR a
 - Sanity 4 and next-sanity for blog content and an embedded Studio.
 - Portable Text for article bodies, Zod for input validation, and Resend for email and newsletter contacts.
 - package-lock.json was reviewed with Next.js 15.5.22, React/React DOM 18.3.1, Sanity 4.19.0, next-sanity 11.6.10, and Resend 6.18.1. Recheck versions after dependency changes.
-- npm run dev: local development.
-- npm run build: production build; npm start: serve production build.
+- npm run dev: local development with generated output in .next-dev.
+- npm run build: production build in .next; npm start: serve that production build. next.config.mjs selects distDir by phase so production builds cannot overwrite development chunks.
 - npm run lint: eslint .; npm run typecheck: tsc --noEmit.
 - No dedicated test script is defined in package.json.
 
@@ -41,10 +41,10 @@ marktn PR is a public marketing and portfolio website for an African luxury PR a
 
 | Route | Behavior |
 | --- | --- |
-| / | Atlas-inspired hero, partner strip, project grid, impact receipt, stacked services, process, engagements, testimonials, founder story, journal and contact |
-| /about | Founder profile and agency values |
+| / | Atlas-inspired hero, partner strip, project grid, impact receipt, stacked services, Who We Are, client audiences, testimonials, company story, journal and contact |
+| /about | Company story, four roles, purpose, mission and vision, approach, five values, target clients, identity and contact |
 | /services | Shared service overview component |
-| /services/[slug] | Eight static service detail pages with audience, deliverables, FAQs, and enquiry link |
+| /services/[slug] | Five deck-based service detail pages with audience, deliverables, FAQs, and enquiry link |
 | /work | Client-side category filtering over four local campaigns |
 | /work/[slug] | Static case studies with galleries, challenge, insight, strategy, execution, results, press coverage, and next campaign |
 | /press | Shared list of press mentions |
@@ -62,21 +62,21 @@ marktn PR is a public marketing and portfolio website for an African luxury PR a
 
 The content setup is hybrid:
 
-1. Agency content is imported from lib/content.ts. It includes four campaigns, eight services, press mentions, brand partners, testimonials, impact statistics, founder details, and values. The redesign uses the supplied MARKTN identity artwork through next/image as visual treatments for projects, not documentary campaign photography. Existing campaign claims, founder biography and press copy were preserved.
+1. Agency content is imported from lib/content.ts. It includes four inherited campaigns, five deck-based services, press mentions, brand partners, testimonials, legacy impact statistics, company information, four company roles, and five values. The redesign uses the supplied MARKTN identity artwork through next/image as visual treatments for projects, not documentary campaign photography. Existing campaign and press claims remain inherited. The unsupported founder biography/timeline was removed; the active company story uses the deck’s 2026 founding date. The homepage impact receipt uses the original impactStats at the user’s request: ₦18.8M+ PR value, 10.9M+ impressions, 40+ campaigns, 30K+ community reached, and four countries. These inherited metrics are not substantiated by the company deck.
 2. Blog content is fetched from Sanity on the server. Schemas cover posts, authors, categories, tags, and blockContent. Rich blocks include images, galleries, quotes, statistics, CTAs, and video links.
 3. sanity/lib/fetch.ts applies a 60-second revalidation interval and the sanity-content tag. The client uses the Sanity CDN. HomeBlog requests the three latest eligible posts and shows a neutral empty state if unavailable. The journal index distinguishes fetch failures from an empty collection.
 4. Work and service slugs are generated from static content. Blog slugs are generated from Sanity.
-5. The contact action validates name, email, company, budget, service, and message, then sends a plain-text enquiry through Resend to hello@marktnpr.com with the sender email as replyTo. Newsletter signup creates a contact; newsletter campaign sending is not implemented here.
+5. General contact links use Info@marktn.com; Onyeka@marktn.com appears only in a dedicated Reach Onyeka section on About. The contact action validates name, email, company, budget, service, and message, then sends a plain-text enquiry through Resend to Info@marktn.com with the sender email as replyTo. Newsletter signup creates a contact; newsletter campaign sending is not implemented here.
 
 ## Design and interaction
 
 - Complete redesign follows the Knack Marketing Framer reference for cream editorial sections, rounded project cards, receipt-style statistics, sticky coloured service panels, process/engagement cards, dark testimonials, contact form and oversized footer branding.
 - The homepage hero uses components/patternWaves.tsx (OGL/WebGL) as a decorative yellow pond-wave line background over the existing gradient, with pointer interaction disabled and built-in reduced-motion support. The gradient remains visible before canvas initialization.
 - The homepage hero follows the supplied Atlas Studio screenshot: black/burgundy grain background, compact navigation, left introduction and split CTA, right featured-project carousel, and an oversized official MARKTN wordmark.
-- Instrument Sans headlines and Inter body text; burgundy #8D1212, yellow #FFC904, blue #59D5FF, cool white #F5F7FA, black and white. Light surfaces use #E9EDF3 and borders #D8DFE8, synchronized between CSS variables and Tailwind colours. The hero wordmark uses public/images/hero/LOGO-WHITE.svg; shared logos elsewhere use supplied PNGs without distortion or recolouring. Favicon uses the supplied K/asterisk mark.
+- Instrument Sans headlines and Inter body text; burgundy #8D1212, yellow #FFC904, blue #59D5FF, cool white #F5F7FA, black and white. Light surfaces use #E9EDF3 and borders #D8DFE8, synchronized between CSS variables and Tailwind colours. The hero signature uses public/images/hero/BeyoundTheBrief.svg at its native 405:111 aspect ratio; the footer uses public/images/hero/LOGO-WHITE.svg at 399:167, and other shared logos use supplied PNGs without distortion or recolouring. Favicon uses the supplied K/asterisk mark.
 - SiteShell provides public navigation, main, footer, smooth scrolling and RevealProvider. Studio gets a separate main without marketing chrome. CursorAperture remains unused; native cursors are used.
 - Lenis still integrates with the GSAP ticker; reduced-motion users receive native scrolling. RevealProvider uses IntersectionObserver and the Web Animations API, without mutating React-owned class/style attributes. A MutationObserver registers streamed and newly inserted reveal targets; animations and observers are cleaned up on navigation, unmount or a switch to reduced motion. Content remains visible without JavaScript or with reduced motion.
-- Featured projects use a two-column grid, category filtering and a manually controlled hero carousel. Service cards stack with sticky positioning on desktop and normal flow on mobile.
+- Featured projects use a two-column grid, category filtering and a manually controlled hero carousel. Service cards stack with sticky positioning on desktop and normal flow on mobile. The five groups are Public & Media Relations, Influencer & Community Marketing (editorial completion of the deck’s truncated heading), Experiential Marketing, Campaign Production, and Integrated Campaign. Old media-relations redirects to public-relations; brand-strategy and consulting redirect to integrated-campaigns. Legacy contact query slugs map to the new categories.
 - Shared UI lives in BrandUI, ContactForm, Process, Reveal and SiteShell. ContactForm works with React 18; service links preselect an enquiry category. Server actions check Resend errors before reporting success.
 - Mobile navigation slides in/out from the right with a no-bounce Framer Motion spring. Links reveal sequentially from blur to clarity; reduced-motion users receive short fades without slide, blur or stagger. The close button uses public/images/hero/ASTERISK-FULLCOLOR.svg. Focus trapping and background scroll locking remain active through exit, then focus returns to the trigger. Escape and route/link navigation close the menu. Forms provide labels, error focus and live status. Responsive and reduced-motion checks passed; this is not a full accessibility audit.
 
@@ -107,11 +107,15 @@ Source: IdentityDeck.pdf, 20 pages, October 2026, designed by Winx Studio. Revie
 - Interpretation for the website: confident sans-serif typography, generous space, expressive colour blocks, distinctive asterisk imagery, and room for playful motion consistent with logo rules. This is an interpretation, not a supplied wireframe or interaction specification.
 - Deck references downloadable assets on Google Drive, but no Drive destination was supplied in the review. The user supplied high-resolution PNG artwork in public/images/hero, now used throughout the implementation.
 
+## Company deck reference
+
+CompanyDeck.pdf (MARKTN Company Deck v1., October 2026, 13 pages) was fully extracted and visually reviewed on 2026-10-15. COMPANY_DECK.md records its substantive content with page references, all five service groups and seventeen capabilities, source wording issues, visual observations, and website alignment notes. The deck describes a marketing and PR company founded in 2026 serving African businesses across industries and global entrants, and gives onyeka@marktn.com as its contact. It supersedes the previous luxury-only positioning and eight-service structure. Site copy now follows the deck: About is expanded, five service groups replace eight entries, public contact links use the user-confirmed general address Info@marktn.com, and the homepage process section is replaced in place by Who We Are. Enquiry delivery now goes to Info@marktn.com. The authenticated sender remains enquiries@marktnpr.com; site origin is unchanged. Personal contact is separated into the About page’s Reach Onyeka section. The deck contains no named client work, performance metrics, founder biography or testimonial evidence.
+
 ## Known gaps and resolved findings
 
 - Sanity Studio preview references /api/draft-mode/enable, but that route remains absent.
 - Blog detail, slug and related-post queries do not consistently exclude future-dated posts.
-- Existing testimonials are explicitly placeholder quotes awaiting approved attribution. Campaign metrics, press claims and founder history remain inherited content, not independently verified facts.
+- Existing testimonials are explicitly placeholder quotes awaiting approved attribution. Campaign metrics and press claims remain inherited content, not independently verified facts; the company deck does not substantiate these. Founder history was removed from active pages.
 - Legacy work images repeat stock photography, and the legacy founder image is a fashion advertisement. These remain on disk but are no longer used by the redesigned pages; genuine campaign photography and an approved founder portrait can replace identity artwork later.
 - Public contact/newsletter handlers have no explicit rate limiting or bot protection.
 - CursorAperture still contains a ticker cleanup issue, but it is no longer mounted. app/page-v2.tsx is also unused.
@@ -168,3 +172,54 @@ Local reference screenshots and browser verification scripts/results are under i
 
 - Updated components/Navigation.tsx with AnimatePresence right-side entry/exit, staggered blur-to-clear navigation links, reduced-motion fades and the supplied full-colour asterisk close icon. Kept focus trapping and scroll lock until exit completes. Updated app/globals.css for a centered close icon and 44px touch target.
 - Verification: read back the implementation and confirmed the SVG asset exists. Full typecheck could not run because the shell helper failed to start; an alternate TypeScript module import exposed no checker API. Browser interactions and production build were not verified.
+
+### 2026-10-15 - Company deck extraction
+
+- Added COMPANY_DECK.md with the full substantive information from all 13 pages of CompanyDeck.pdf, page references, visual identity observations, editorial ambiguities, contact details, and explicitly separated website alignment findings. Updated CONTEXT.md with the reference and reconciliation gaps.
+- Verification: extracted all 13 pages with PyMuPDF, rendered and visually inspected every page, checked all five service groups and seventeen capabilities, and read back the Markdown with a complete 13-page coverage index. No application source or project dependencies changed; application tests were not applicable. Temporary PDF tooling was installed under tmp/pdfs only.
+
+### 2026-10-15 - Company deck website content update
+
+- Rebuilt app/about/page.tsx around the deck’s company story, four roles, purpose, mission/vision, From-Their-Eyes approach, five values, client profile, identity and contact; added scoped responsive styles in app/globals.css. Removed the unsupported founder biography and conflicting timeline from lib/content.ts and updated the unused app/page-v2.tsx consumer.
+- Replaced the homepage How We Work section with Who We Are using the existing four-card section in components/Process.tsx; retained homepage section count/order. Existing audience cards, company-story section, hero proof and impact receipt now use deck-based copy and facts. Updated app/page.tsx, components/Hero.tsx, Founder.tsx and ImpactCounter.tsx.
+- Aligned lib/content.ts and components/Services.tsx to five service groups and seventeen capabilities; updated service metadata, legacy contact preselection and next.config.mjs redirects for the three retired service URLs. Completed the source’s truncated Influencer & Community Market heading to Marketing for public copy.
+- Updated visible email links and fallback copy in Footer, Navigation, ContactForm and contact/actions to onyeka@marktn.com; left the actual Resend recipient/sending domain unchanged. Updated root positioning/organization metadata and README. Existing portfolio, press and testimonial placeholders remain unverified and were not replaced with invented content.
+- Verification: final TypeScript, ESLint and production build passed (27 generated pages). Browser checks passed for nine routes at 1440×1000, 375×812 and 812×375, with no page errors or horizontal overflow; confirmed five service cards, five values, unchanged 11-section homepage, legacy redirects and form preselection. About artwork/logo loading passed at desktop and mobile widths; desktop/mobile screenshots were visually reviewed. Initial build overlapped the dev server and failed during page-data collection; the subsequent build passed. Sandbox CMS access failed during local development, while the network-enabled build fetched Sanity posts successfully. No actual enquiry or newsletter submission was sent. Scripts/screenshots are under ignored tmp/company-update.
+
+### 2026-10-15 - Restore homepage impact section
+
+- Restored components/ImpactCounter.tsx to the original The impact / Good ideas. Real outcomes. copy and five impactStats values, matching the user’s screenshot. Removed the unused receipt-fact style from app/globals.css. Other deck-based content remains in place.
+- Verification: confirmed the restored component matches its original implementation and retains the existing shared data source. Exact component comparison and git diff --check passed. Targeted ESLint timed out without output; browser/build checks were not rerun for this restoration.
+
+### 2026-10-15 - Social profiles and contact routing
+
+- Updated Footer social links and root Organization sameAs links to the supplied marktnagency Instagram URL and marktn-agency LinkedIn company URL.
+- Updated lib/content.ts, Footer, Navigation, ContactForm, contact/actions and README so general enquiries and form delivery use Info@marktn.com. Preserved the Resend sender domain. Added a dedicated Reach Onyeka section on app/about/page.tsx using company.onyekaEmail (Onyeka@marktn.com); general About CTA continues to use company.email.
+- Verification: TypeScript and git diff --check passed. Scanned application references to confirm the old social URLs and general personal-email usage were removed. Targeted ESLint timed out without output. No email was sent; browser and production build were not rerun for this contact update.
+
+### 2026-10-15 - Expressive editorial cards
+
+- Updated app/about/page.tsx and app/services/[slug]/page.tsx with shared expressive-card classes, small edition labels, official full-colour asterisk accents and a capability-count badge. Mission/vision cards use yellow/blue surfaces; service audience cards use dark ink and capability cards use white with a yellow edge and numbered badges. Added responsive styles in app/globals.css with asymmetric corners and a decorative ring motif. Logos retain their supplied proportions and colours; no new motion was introduced.
+- Verification: formatter, final TypeScript and browser checks passed for About and Influencer & Community Marketing at 1440px and 375px, with both card pairs present, no page errors or horizontal overflow. Desktop/mobile screenshots were visually reviewed (ignored tmp/card-refresh). Initial typecheck raced .next/types regeneration, then passed after route compilation. Targeted ESLint passed. Production build was not rerun for this card styling change.
+
+### 2026-10-15 - Simplify card accents (supersedes expressive card treatment)
+
+- Reverted the previous yellow/blue/dark/white card redesign, edition labels, badges, heading overrides and ring motif in app/about/page.tsx, app/services/[slug]/page.tsx and app/globals.css. Original pale surfaces, typography and list styling are restored.
+- Added the supplied full-colour asterisk as a large, partly cropped bottom-right decorative watermark on mission/vision and service detail cards. Opacity is 0.5; precise-pointer hover scales it to 1.3 over 450ms. Text remains above the decoration, the watermark cannot intercept clicks, and reduced motion disables scaling.
+- Verification: formatting and git diff --check passed; confirmed the SVG exists, old expressive-card markup/styles are absent and the requested opacity/hover rules are present. Browser/build checks were not rerun for this targeted styling update.
+
+### 2026-10-15 - Recover missing development homepage chunk
+
+- Confirmed localhost:3000 returned homepage HTML with /_next/static/chunks/app/page.js, but that chunk URL returned 404. Prior dev/build verification had shared .next output with the user’s development server.
+- Updated next.config.mjs to select .next-dev for PHASE_DEVELOPMENT_SERVER and .next for production build/start, preventing that output collision. Added .next-dev to .gitignore and its generated types to tsconfig.json; documented output directories in README. No source assets or existing build artifacts were deleted.
+- Verification: development/build/start phase assertions, targeted ESLint, TypeScript and git diff --check passed. The running dev server restarted with .next-dev; homepage and app/page.js both returned 200. Browser regression passed two homepage loads, About navigation and featured-carousel interactions with zero page errors. Production build was not rerun; its .next output path is unchanged. Local regression script/results are under ignored tmp/chunk-recovery.
+
+### 2026-10-17 - Hero signature asset
+
+- Updated components/Hero.tsx to use the supplied public/images/hero/BeyoundTheBrief.svg with its native 405:111 aspect ratio and Beyond the brief alt text. Retained priority loading and the existing responsive hero-wordmark class.
+- Verification: confirmed the SVG exists and inspected its width, height and viewBox; read back the updated source reference. Browser and production build checks were not run for this asset substitution.
+
+### 2026-10-17 - Footer SVG logo
+
+- Updated components/Footer.tsx to render public/images/hero/LOGO-WHITE.svg instead of the shared PNG logo, retaining the original 399:167 aspect ratio and existing footer-wordmark/brand-logo styles.
+- Verification: confirmed the asset exists, inspected SVG dimensions, and read back the source reference. Browser/build checks were not run for this asset-only substitution.

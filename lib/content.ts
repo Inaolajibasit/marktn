@@ -227,303 +227,158 @@ export type Service = {
 export const services: Service[] = [
   {
     slug: "public-relations",
-    name: "Public Relations",
+    name: "Public & Media Relations",
     detail:
-      "Narrative strategy and reputation management for markets entering or scaling across Africa.",
+      "Stories, reputation and editorial positioning rooted in an understanding of African audiences.",
     moreInfo:
-      "From press releases to long-lead features, we shape the story before it breaks and steward it after. Our PR work spans corporate communications, product launches, and ongoing reputation management across the continent.",
+      "We connect brand storytelling and narrative development with press releases, media strategy and reputation management. Strategic placements and journalist relationships help shape a clear editorial position.",
+    audience: [
+      "Brands with a clear identity and positioning",
+      "African businesses building stronger audience connections",
+      "Global brands seeking culturally accurate market entry",
+    ],
+    deliverables: [
+      "Brand Storytelling & Narrative Development",
+      "Press Releases & Media Strategy",
+      "Reputation Management",
+      "Strategic Media Placements",
+      "Journalist & Publication Relationships",
+      "Editorial Positioning",
+    ],
     href: "/services/public-relations",
-    audience: [
-      "Global brands entering African markets",
-      "Established brands protecting or evolving their reputation",
-      "Leadership teams preparing for a major launch or announcement",
-    ],
-    deliverables: [
-      "Communications and narrative strategy",
-      "Press office and media materials",
-      "Launch and announcement planning",
-      "Reputation and issues counsel",
-      "Coverage reporting and insight",
-    ],
     faqs: [
       {
-        question: "Do you offer ongoing PR retainers?",
+        question: "Who is this for?",
         answer:
-          "Yes. We support both focused campaigns and ongoing press-office retainers, depending on your communications rhythm and objectives.",
+          "Brands with a clear identity and positioning. African businesses building stronger audience connections. Global brands seeking culturally accurate market entry.",
       },
       {
-        question: "Which markets do you cover?",
+        question: "What shapes the approach?",
         answer:
-          "Our work is rooted in Africa, with active experience across West, East and Southern African markets and relationships with relevant global media.",
-      },
-      {
-        question: "How do you measure success?",
-        answer:
-          "We agree on meaningful measures at the outset, including message pull-through, quality of coverage, audience relevance, sentiment and commercial context.",
-      },
-    ],
-  },
-  {
-    slug: "media-relations",
-    name: "Media Relations",
-    detail:
-      "Direct relationships with the editors and publications that shape culture and commerce.",
-    moreInfo:
-      "We work with editors across Business of Fashion, Marie Claire, BeautyMatter and regional powerhouses in Lagos, Accra, Nairobi and Johannesburg. Briefings, exclusives and ongoing coverage — not just one-off placements.",
-    href: "/services/media-relations",
-    audience: [
-      "Brands with a strong story but limited editorial access",
-      "Teams launching products, people or ideas",
-      "Organisations seeking deeper, long-term media relationships",
-    ],
-    deliverables: [
-      "Media landscape and opportunity mapping",
-      "Tailored media lists",
-      "Pitch development and outreach",
-      "Editor briefings and interview management",
-      "Coverage tracking and follow-up",
-    ],
-    faqs: [
-      {
-        question: "Can you guarantee coverage?",
-        answer:
-          "Earned coverage cannot be guaranteed. We focus on a credible story, precise targeting and trusted relationships—the conditions that make meaningful coverage more likely.",
-      },
-      {
-        question: "Do you work with international publications?",
-        answer:
-          "Yes. We work across leading African titles and relevant international fashion, beauty, business and culture media.",
-      },
-      {
-        question: "Can this be a standalone engagement?",
-        answer:
-          "Yes. Media relations can run independently or as part of a wider PR, launch or integrated campaign.",
-      },
-    ],
-  },
-  {
-    slug: "experiential",
-    name: "Experiential",
-    detail:
-      "Launches and activations built for the moment a brand is first felt in a new market.",
-    moreInfo:
-      "Residencies, press days, brand houses and counter activations — produced in-house from concept to load-out. We design for the room, the guest list, and the press moment simultaneously.",
-    href: "/services/experiential",
-    audience: [
-      "Brands planning launches, press days or cultural activations",
-      "Teams that need local production without losing global standards",
-      "Organisations creating an experience designed to earn attention",
-    ],
-    deliverables: [
-      "Experience concept and creative direction",
-      "Venue, supplier and production management",
-      "Guest strategy and invitation management",
-      "Run-of-show and on-site delivery",
-      "Press and content integration",
-    ],
-    faqs: [
-      {
-        question: "Do you handle production end to end?",
-        answer:
-          "Yes. We can manage the full experience from concept and budgeting through suppliers, guest management, live delivery and post-event reporting.",
-      },
-      {
-        question: "Can you deliver outside Nigeria?",
-        answer:
-          "Yes. We build trusted local teams for projects across key African markets while maintaining one central creative and production standard.",
-      },
-      {
-        question: "How early should we involve you?",
-        answer:
-          "Ideally eight to twelve weeks before a major activation. Larger builds or multi-market programmes benefit from a longer lead time.",
-      },
-    ],
-  },
-  {
-    slug: "brand-strategy",
-    name: "Brand Strategy",
-    detail:
-      "Positioning rooted in cultural fluency, not translated from elsewhere.",
-    moreInfo:
-      "Market-entry positioning, narrative architecture, and brand voice systems. We work with founders and global teams to define how a brand sounds, looks and shows up before it speaks publicly.",
-    href: "/services/brand-strategy",
-    audience: [
-      "Founders defining a new brand",
-      "Global teams adapting positioning for African audiences",
-      "Established brands that have outgrown their current narrative",
-    ],
-    deliverables: [
-      "Research and cultural landscape review",
-      "Positioning and value proposition",
-      "Audience and messaging architecture",
-      "Brand voice principles",
-      "Go-to-market communications roadmap",
-    ],
-    faqs: [
-      {
-        question: "Is this visual branding?",
-        answer:
-          "Our focus is strategic: positioning, narrative, audience, messaging and voice. We can collaborate with your visual identity team or recommend the right creative partners.",
-      },
-      {
-        question: "Will we receive a usable strategy document?",
-        answer:
-          "Yes. The final system is practical and designed for your teams and partners to use across campaigns, content, press and decision-making.",
-      },
-      {
-        question: "Can you facilitate leadership workshops?",
-        answer:
-          "Yes. Workshops are often central to aligning leadership, surfacing insight and making strategic choices efficiently.",
+          "Our From-Their-Eyes Led Marketing approach puts cultural truth, immersive experiences and long-term narratives at the centre, with Africa as a primary market.",
       },
     ],
   },
   {
     slug: "influencer-marketing",
-    name: "Influencer Marketing",
+    name: "Influencer & Community Marketing",
     detail:
-      "Talent partnerships chosen for cultural weight, not follower count alone.",
+      "Partnerships and community-led campaigns built on cultural understanding.",
     moreInfo:
-      "Briefing, contracting, and managing creators across fashion, beauty, music and culture. We choose for fit and credibility — reach follows.",
-    href: "/services/influencer-marketing",
+      "Influencer partnerships, community-led campaigns and cultural seeding strategies connect brands with the people and conversations that matter to their audiences.",
     audience: [
-      "Brands seeking credible cultural advocates",
-      "Campaigns that need reach with relevance",
-      "Teams requiring local talent knowledge and hands-on management",
+      "Brands seeking authentic engagement with African audiences",
+      "Businesses ready to go beyond conventional marketing",
+      "Companies investing in distinctive, high-impact marketing",
     ],
     deliverables: [
-      "Creator strategy and talent shortlist",
-      "Audience and brand-fit vetting",
-      "Briefing, contracting and negotiation",
-      "Content review and campaign management",
-      "Performance reporting and learnings",
+      "Influencer Partnerships",
+      "Community-led Campaigns",
+      "Cultural Seeding Strategies",
     ],
+    href: "/services/influencer-marketing",
     faqs: [
       {
-        question: "How do you select creators?",
+        question: "Who is this for?",
         answer:
-          "We assess cultural credibility, audience quality, creative fit, brand safety and past performance—not follower count alone.",
+          "Brands seeking authentic engagement with African audiences. Businesses ready to go beyond conventional marketing. Companies investing in distinctive, high-impact marketing.",
       },
       {
-        question: "Do you manage contracts and usage rights?",
+        question: "What shapes the approach?",
         answer:
-          "Yes. We manage commercial negotiation, deliverables, timelines, approvals and usage terms as part of the engagement.",
+          "Our From-Their-Eyes Led Marketing approach puts cultural truth, immersive experiences and long-term narratives at the centre, with Africa as a primary market.",
+      },
+    ],
+  },
+  {
+    slug: "experiential",
+    name: "Experiential Marketing",
+    detail:
+      "Brand activations and immersive experiences that create moments, not just campaigns.",
+    moreInfo:
+      "We bring brands into the moments people share through activations, pop-ups and immersive experiences. Event-based storytelling connects the experience to a wider brand narrative.",
+    audience: [
+      "African businesses growing their market presence",
+      "Brands seeking meaningful audience engagement",
+      "Global brands connecting with African markets",
+    ],
+    deliverables: [
+      "Brand Activations",
+      "Pop-ups & Immersive Experiences",
+      "Event-based Storytelling",
+    ],
+    href: "/services/experiential",
+    faqs: [
+      {
+        question: "Who is this for?",
+        answer:
+          "African businesses growing their market presence. Brands seeking meaningful audience engagement. Global brands connecting with African markets.",
       },
       {
-        question: "Can you work with our existing talent roster?",
+        question: "What shapes the approach?",
         answer:
-          "Absolutely. We can evaluate, refine and manage an existing roster or supplement it where the brief needs additional voices.",
+          "Our From-Their-Eyes Led Marketing approach puts cultural truth, immersive experiences and long-term narratives at the centre, with Africa as a primary market.",
       },
     ],
   },
   {
     slug: "campaign-production",
     name: "Campaign Production",
-    detail: "In-house production from concept to final film.",
+    detail:
+      "Creative direction, content production and end-to-end campaign execution.",
     moreInfo:
-      "Photography, film, and editorial production with full on-the-ground teams across West and East Africa. Concepting, casting, location, post — under one roof.",
-    href: "/services/campaign-production",
+      "From creative direction to content production and campaign execution, we bring the work together around one clear brand narrative. Every execution is guided by our commitment to global standards.",
     audience: [
-      "Brands producing editorial, social or launch assets in Africa",
-      "Global creative teams needing reliable local execution",
-      "Campaigns requiring one accountable production partner",
+      "Brands with a clear identity and positioning",
+      "Companies investing in distinctive creative work",
+      "Businesses ready to turn a campaign idea into an experience",
     ],
     deliverables: [
-      "Creative development and treatment",
-      "Budgeting, scheduling and pre-production",
-      "Casting, crew, locations and logistics",
-      "Photography and film production",
-      "Post-production and final asset delivery",
+      "Creative Direction",
+      "Content Production",
+      "End to End Campaign Execution",
     ],
+    href: "/services/campaign-production",
     faqs: [
       {
-        question: "Can you work from an existing global concept?",
+        question: "Who is this for?",
         answer:
-          "Yes. We can faithfully localise and produce an established creative direction, or develop the concept with you from the beginning.",
+          "Brands with a clear identity and positioning. Companies investing in distinctive creative work. Businesses ready to turn a campaign idea into an experience.",
       },
       {
-        question: "Do you produce both stills and film?",
+        question: "What shapes the approach?",
         answer:
-          "Yes. We build integrated teams for photography, film and supporting social content so the asset suite feels coherent.",
-      },
-      {
-        question: "How are budgets managed?",
-        answer:
-          "You receive a transparent production budget, agreed scope and approval points. Any changes are discussed before costs are committed.",
+          "Our From-Their-Eyes Led Marketing approach puts cultural truth, immersive experiences and long-term narratives at the centre, with Africa as a primary market.",
       },
     ],
   },
   {
     slug: "integrated-campaigns",
-    name: "Integrated Campaigns",
-    detail: "PR, experiential and media working as a single system.",
-    moreInfo:
-      "When the brief needs all three working at once — earned, owned and experiential in lockstep — we run it as one campaign with one team and one measurement framework.",
-    href: "/services/integrated-campaigns",
-    audience: [
-      "Brands with a major market-entry or launch brief",
-      "Teams coordinating several agencies or workstreams",
-      "Campaigns that need earned, owned and experiential activity to reinforce one idea",
-    ],
-    deliverables: [
-      "Integrated campaign strategy",
-      "Creative platform and channel planning",
-      "PR, media, talent and experience management",
-      "Central programme and partner coordination",
-      "Unified measurement and reporting",
-    ],
-    faqs: [
-      {
-        question: "What makes a campaign integrated?",
-        answer:
-          "Every channel begins with one strategic idea and one audience journey. PR, content, talent and experience are planned together rather than assembled afterwards.",
-      },
-      {
-        question: "Can you lead other specialist partners?",
-        answer:
-          "Yes. We can act as the central agency, setting the communications system and coordinating client teams and specialist partners.",
-      },
-      {
-        question: "What is the typical timeline?",
-        answer:
-          "Most integrated campaigns require at least twelve weeks. Multi-market or production-heavy programmes may require more.",
-      },
-    ],
-  },
-  {
-    slug: "consulting",
-    name: "Consulting",
+    name: "Integrated Campaign",
     detail:
-      "Advisory for leadership teams entering African markets for the first time.",
+      "Cross-channel strategy that connects digital, offline and experiential marketing.",
     moreInfo:
-      "Market intelligence, entry sequencing, and partner selection for global houses and founders approaching the continent. Engagements run from a single workshop to a six-month retainer.",
-    href: "/services/consulting",
+      "We connect digital, offline and experiential touchpoints through cross-channel strategy and full funnel campaign development, building long-term narratives rather than isolated moments.",
     audience: [
-      "Leadership teams assessing an African market opportunity",
-      "Global brands choosing when and how to enter",
-      "Founders who need an experienced external perspective",
+      "African businesses building stronger brands",
+      "Companies seeking a connected campaign across channels",
+      "Global brands entering African markets",
     ],
     deliverables: [
-      "Market and cultural intelligence",
-      "Opportunity and risk assessment",
-      "Entry sequencing and communications counsel",
-      "Partner and stakeholder mapping",
-      "Executive workshops and advisory sessions",
+      "Cross-channel Strategy (Digital, Offline & Experiential)",
+      "Full Funnel Campaign Development",
     ],
+    href: "/services/integrated-campaigns",
     faqs: [
       {
-        question: "What does a consulting engagement look like?",
+        question: "Who is this for?",
         answer:
-          "It can be a focused leadership workshop, a defined research and recommendations project, or an ongoing advisory relationship.",
+          "African businesses building stronger brands. Companies seeking a connected campaign across channels. Global brands entering African markets.",
       },
       {
-        question: "Is the advice specific to our category?",
+        question: "What shapes the approach?",
         answer:
-          "Yes. We shape the work around your category, audience, commercial goals and the realities of the markets you are considering.",
-      },
-      {
-        question: "Can consulting lead into execution?",
-        answer:
-          "Yes. When useful, the strategy can transition into PR, experiential, production or an integrated campaign with the same team.",
+          "Our From-Their-Eyes Led Marketing approach puts cultural truth, immersive experiences and long-term narratives at the centre, with Africa as a primary market.",
       },
     ],
   },
@@ -596,53 +451,84 @@ export const impactStats: ImpactStat[] = [
   { value: 4, label: "Countries" },
 ];
 
-export const founder = {
-  name: "Onyeka Nwonah",
-  portrait: "/images/founder/onyeka.jpg",
-  bio: "Onyeka founded MARKTN on a simple conviction: African audiences deserve campaigns built for them, not adapted for them. Her work sits at the intersection of Western luxury standards and the cultural fluency required to actually move people here.",
-  timeline: [
-    {
-      year: "2018",
-      event:
-        "Began in media relations, placing early-stage African fashion brands in international press.",
-    },
-    {
-      year: "2020",
-      event:
-        "Led experiential launches for beauty brands entering the West African market.",
-    },
-    {
-      year: "2022",
-      event:
-        "Founded marktn PR to build campaigns rooted in cultural intelligence, not imported playbooks.",
-    },
-    {
-      year: "2025",
-      event:
-        "Grew marktn PR into a four-country agency working with global luxury houses.",
-    },
+export const company = {
+  name: "MARKTN",
+  founded: "2026",
+  email: "Info@marktn.com",
+  onyekaEmail: "Onyeka@marktn.com",
+  headline: "The new standard for African marketing.",
+  description:
+    "MARKTN is a next generation marketing and public relations company, founded in 2026 to redefine how brands engage with the Nigerian and broader African market.",
+  philosophy:
+    "Our name is a stylized evolution of Marketing. It reflects a simple belief: marketing should not be repeated, it should be re-imagined.",
+  partnership:
+    "We partner with local, international and global brands to design campaigns that are relevant to African audiences and position Africa as a key driver of global cultural influence.",
+  purpose:
+    "We exist because African audiences deserve more than recycled marketing ideas. We believe brands should understand the people, culture and stories behind the markets they want to reach.",
+  mission:
+    "To transform marketing and public relations in Nigeria and Africa by delivering distinct, culturally intelligent and experience-driven campaigns that go beyond expectations and redefine how brands connect with people.",
+  vision:
+    "To become Africa’s most relevant and globally respected marketing and PR agency — the first choice for international brands entering the African market, and a driving force in changing global perception of African marketing.",
+  approach: "From-Their-Eyes Led Marketing",
+  principles: [
+    "Campaigns rooted in cultural truth",
+    "Immersive brand experiences",
+    "Long-term narratives",
+    "Africa as a primary market",
   ],
+  clients:
+    "Ambitious African businesses across industries, from emerging businesses to established companies, looking to build stronger brands, connect with their audiences and grow their market presence.",
+  idealClients: [
+    "Brands with a clear identity and positioning",
+    "Companies willing to invest in distinctive, high-impact marketing",
+    "Organizations seeking authentic engagement with African audiences",
+    "Global brands looking for culturally accurate market entry strategies",
+  ],
+  identity:
+    "MARKTN is marketing, just not as you know it. Our identity is bold, unconventional and built around the idea of going beyond the brief. The asterisk points to something beyond what’s written: more to explore, question and uncover. Placed on the K, it turns the deliberate difference in our name into our most recognizable symbol.",
 };
+
+export const companyRoles = [
+  {
+    name: "Cultural Interpreter",
+    detail:
+      "Translates global brand ambition into authentic African cultural truth.",
+  },
+  {
+    name: "Creative Partner",
+    detail:
+      "Builds narratives and experiences alongside brands, not just for them.",
+  },
+  {
+    name: "Market Entry Strategist",
+    detail:
+      "Guides global brands into African markets with clarity and confidence.",
+  },
+  {
+    name: "Disruptor",
+    detail:
+      "Challenges recycled, diluted marketing norms with bold, original thinking.",
+  },
+];
 
 export const values = [
   {
-    name: "Cultural Fluency",
-    detail:
-      "We build for the audience in front of us, not a translated version of somewhere else.",
+    name: "Meaningful & Steadfast Impact",
+    detail: "We focus on meaningful engagement, not vanity metrics.",
   },
   {
-    name: "Craft",
+    name: "Fresh & New",
     detail:
-      "Every deliverable is produced to a standard that could sit in an international portfolio.",
+      "We reject recycled ideas and prioritize fresh, intentional thinking.",
   },
   {
-    name: "Candor",
-    detail: "We tell clients what will work, not what is easiest to say.",
+    name: "Cultural Intelligence",
+    detail: "We build from real understanding of people, not assumptions.",
   },
+  { name: "Excellent", detail: "Every execution must meet global standards." },
   {
-    name: "Access",
-    detail:
-      "Real relationships with the press and platforms that move culture.",
+    name: "All About The Moment",
+    detail: "We create moments, not just campaigns.",
   },
 ];
 

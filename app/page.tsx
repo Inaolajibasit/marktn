@@ -5,7 +5,7 @@ import { LogoMarquee } from "@/components/LogoMarquee";
 import { FeaturedWork } from "@/components/FeaturedWork";
 import { ImpactCounter } from "@/components/ImpactCounter";
 import { Services } from "@/components/Services";
-import { Process, Engagements } from "@/components/Process";
+import { WhoWeAre, Engagements } from "@/components/Process";
 import { Founder } from "@/components/Founder";
 import { Testimonials } from "@/components/Testimonials";
 import { HomeBlog } from "@/components/HomeBlog";
@@ -23,7 +23,7 @@ export default function HomePage() {
       <FeaturedWork />
       <ImpactCounter />
       <Services />
-      <Process />
+      <WhoWeAre />
       <Engagements />
       <Testimonials />
       <Founder />

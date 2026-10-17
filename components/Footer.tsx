@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { BrandLogo, ButtonLink } from "./BrandUI";
+import Image from "next/image";
+import { ButtonLink } from "./BrandUI";
 
 export function Footer() {
   return (
@@ -14,15 +15,15 @@ export function Footer() {
           <ButtonLink href="/contact" variant="light">
             Let’s make it happen
           </ButtonLink>
-          <a className="footer-email" href="mailto:hello@marktnpr.com">
-            hello@marktnpr.com
+          <a className="footer-email" href="mailto:Info@marktn.com">
+            Info@marktn.com
           </a>
         </div>
       </div>
       <div className="footer-columns">
         <div>
           <h3>Our world</h3>
-          <p>Lagos, Nigeria</p>
+          <p>Nigeria &amp; Africa</p>
           <p>Rooted in Africa.</p>
           <p>Connected to the world.</p>
         </div>
@@ -37,14 +38,14 @@ export function Footer() {
         <div>
           <h3>Stay connected</h3>
           <a
-            href="https://www.instagram.com/marktnpr"
+            href="https://instagram.com/marktnagency?rpxt=MTB0dXJ3dW94a2U0cA%3D%3D"
             target="_blank"
             rel="noreferrer"
           >
             Instagram ↗
           </a>
           <a
-            href="https://www.linkedin.com/company/marktnpr"
+            href="https://www.linkedin.com/company/marktn-agency/"
             target="_blank"
             rel="noreferrer"
           >
@@ -65,7 +66,13 @@ export function Footer() {
         </div>
       </div>
       <div className="footer-wordmark">
-        <BrandLogo light />
+        <Image
+          src="/images/hero/LOGO-WHITE.svg"
+          alt="MARKTN"
+          width={399}
+          height={167}
+          className="brand-logo"
+        />
       </div>
       <div className="footer-bottom">
         <span>© {new Date().getFullYear()} MARKTN. All rights reserved.</span>

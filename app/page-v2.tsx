@@ -20,7 +20,7 @@ import {
   press,
   services,
   impactStats,
-  founder,
+  company,
 } from "@/lib/content";
 
 /* -----------------------------------------------------------------------
@@ -89,13 +89,19 @@ function HeroV2() {
 
           <h1 className="mt-8 font-display text-display-1">
             <span className="block">We move luxury</span>
-            <span className="block italic text-ink-60">across a continent,</span>
+            <span className="block italic text-ink-60">
+              across a continent,
+            </span>
             <span className="block">not around it.</span>
           </h1>
 
-          <Reveal delay={0.35} className="mt-10 max-w-xl font-body text-body text-ink-60">
-            marktn PR is a Lagos-based agency building culturally intelligent campaigns for global
-            luxury and beauty houses across Africa. We work in markets, not at them.
+          <Reveal
+            delay={0.35}
+            className="mt-10 max-w-xl font-body text-body text-ink-60"
+          >
+            marktn PR is a Lagos-based agency building culturally intelligent
+            campaigns for global luxury and beauty houses across Africa. We work
+            in markets, not at them.
           </Reveal>
 
           <div className="mt-10 flex flex-wrap gap-4">
@@ -197,7 +203,9 @@ function FeaturedWorkV2() {
                   <p className="font-mono text-caption uppercase tracking-[0.08em] text-ink-40">
                     {c.category} — {c.year}
                   </p>
-                  <p className="mt-1 font-display text-display-3 text-ink">{c.client}</p>
+                  <p className="mt-1 font-display text-display-3 text-ink">
+                    {c.client}
+                  </p>
                 </div>
                 <p className="col-span-12 font-body text-body text-ink-60 md:col-span-4">
                   {c.description}
@@ -294,7 +302,9 @@ function ServicesV2() {
                       +
                     </span>
                   </summary>
-                  <p className="mt-3 max-w-md pl-10 font-body text-body text-ink-60">{s.detail}</p>
+                  <p className="mt-3 max-w-md pl-10 font-body text-body text-ink-60">
+                    {s.detail}
+                  </p>
                 </details>
               </Reveal>
             </li>
@@ -317,19 +327,15 @@ function FounderV2() {
       <div className="mx-auto grid max-w-content grid-cols-1 gap-12 md:grid-cols-12 md:gap-x-8">
         <Reveal className="md:col-span-7">
           <p className="font-mono text-caption uppercase tracking-[0.18em] text-rust-deep">
-            ⏤ Index 04 — Letter from the Founder
+            ⏤ Index 04 — Why we exist
           </p>
 
           <blockquote className="mt-8 font-display text-display-2 italic leading-[1.05] text-ink">
-            <p>
-              “African audiences deserve campaigns <span className="text-rust-deep">built for them</span>,
-              not adapted for them. Our work sits at the intersection of Western luxury standards and
-              the cultural fluency required to actually move people here.”
-            </p>
+            <p>{company.purpose}</p>
           </blockquote>
 
           <p className="mt-10 font-mono text-caption uppercase tracking-[0.08em] text-ink-60">
-            — {founder.name}, Founder &amp; Principal
+            — {company.name}, Beyond the brief
           </p>
 
           <Link
@@ -347,15 +353,15 @@ function FounderV2() {
         <Reveal delay={0.15} className="md:col-span-5">
           <div className="relative aspect-[4/5] overflow-hidden bg-teal">
             <Image
-              src={founder.portrait}
-              alt={`${founder.name}, founder of marktn PR`}
+              src="/images/hero/hero1.png"
+              alt={`${company.name}, founder of marktn PR`}
               fill
               sizes="(min-width: 768px) 40vw, 100vw"
               className="object-cover opacity-90"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-teal-deep/60 via-transparent to-transparent" />
             <p className="absolute bottom-4 left-4 font-mono text-caption uppercase tracking-[0.08em] text-paper/80">
-              {founder.name}
+              {company.name}
             </p>
           </div>
         </Reveal>

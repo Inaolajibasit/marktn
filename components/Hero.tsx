@@ -39,8 +39,8 @@ export function Hero() {
               Let’s talk
             </ButtonLink>
             <div className="hero-proof">
-              <strong>40+ campaigns</strong>
-              <span>Across 4 African markets</span>
+              <strong>Founded in 2026</strong>
+              <span>Nigeria. Africa. Beyond.</span>
             </div>
           </div>
         </div>
@@ -108,17 +108,17 @@ export function Hero() {
       <div className="hero-signature">
         {/* <p className="hero-tagline">Beyond the brief.</p> */}
         <Image
-          src="/images/hero/LOGO-WHITE.svg"
-          alt="MARKTN"
-          width={399}
-          height={167}
+          src="/images/hero/BeyoundTheBrief.svg"
+          alt="Beyond the brief"
+          width={405}
+          height={111}
           className="brand-logo hero-wordmark"
           priority
         />
       </div>
       <div className="hero-disciplines">
         <span>Public relations</span>
-        <i aria-hidden /> <span>Brand strategy</span>
+        <i aria-hidden /> <span>Community marketing</span>
         <i aria-hidden />
         <span>Experiential</span>
         <i aria-hidden />

@@ -167,8 +167,8 @@ export function Navigation() {
               <Arrow />
             </MotionLink>
           </nav>
-          <a className="mobile-menu-email" href="mailto:hello@marktnpr.com">
-            hello@marktnpr.com
+          <a className="mobile-menu-email" href="mailto:Info@marktn.com">
+            Info@marktn.com
           </a>
         </motion.div>
       )}

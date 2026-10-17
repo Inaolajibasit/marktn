@@ -1,45 +1,29 @@
 import { ButtonLink, SectionHeading } from "./BrandUI";
+import { company, companyRoles } from "@/lib/content";
 
-const steps = [
-  {
-    title: "Look closer.",
-    label: "Discover",
-    copy: "We get into your world: your audience, your ambition, and the opportunity hiding in plain sight.",
-  },
-  {
-    title: "Find the angle.",
-    label: "Define",
-    copy: "Cultural insight meets a clear strategy. One strong idea to give every part of the campaign direction.",
-  },
-  {
-    title: "Make it matter.",
-    label: "Create",
-    copy: "Stories, partnerships and experiences come together, with a team that sees the whole picture.",
-  },
-  {
-    title: "Keep moving.",
-    label: "Measure",
-    copy: "We track the impact, learn from the response, and use what works to shape your next move.",
-  },
-];
-
-export function Process() {
+export function WhoWeAre() {
   return (
-    <section className="content-section process-section">
+    <section
+      className="content-section process-section"
+      aria-labelledby="who-we-are-title"
+    >
       <SectionHeading
-        eyebrow="How we work"
-        title="Beyond the obvious."
-        accent="From day one."
-      />
+        eyebrow="Who we are"
+        id="who-we-are-title"
+        title="The new standard"
+        accent="for African marketing."
+      >
+        <p>{company.description}</p>
+      </SectionHeading>
       <div className="process-grid">
-        {steps.map((step, i) => (
-          <article key={step.title} data-reveal>
+        {companyRoles.map((role, i) => (
+          <article key={role.name} data-reveal>
             <div className="process-step">
               <span>0{i + 1}</span>
-              <span>{step.label}</span>
+              {/* <span>MARKTN</span> */}
             </div>
-            <h3>{step.title}</h3>
-            <p>{step.copy}</p>
+            <h3>{role.name}</h3>
+            <p>{role.detail}</p>
           </article>
         ))}
       </div>
@@ -50,38 +34,38 @@ export function Process() {
 export function Engagements() {
   const plans = [
     {
-      title: "A focused project.",
-      label: "Make your next move",
-      copy: "A clear brief. A specific opportunity. The right team to bring it to life.",
+      title: "Ambitious African brands.",
+      label: "Build stronger connections",
+      copy: "Across industries, we work with African businesses ready to build stronger brands and grow their market presence.",
       items: [
-        "Strategy and brand positioning",
-        "A launch, activation or production",
-        "Defined scope and deliverables",
-        "One accountable team",
+        "A clear identity and positioning",
+        "Authentic audience engagement",
+        "Distinctive, high-impact marketing",
+        "Meaningful engagement over vanity metrics",
       ],
       className: "",
     },
     {
-      title: "A bigger launch.",
-      label: "Bring it all together",
-      copy: "One idea across every touchpoint. An integrated campaign built to land.",
+      title: "Ready for what’s next.",
+      label: "Beyond conventional marketing",
+      copy: "From emerging businesses to established companies, we partner with brands willing to explore a different way forward.",
       items: [
-        "PR and communications strategy",
-        "Talent, content and experiences",
-        "Coordinated campaign delivery",
-        "Shared measurement and reporting",
+        "Campaigns rooted in cultural truth",
+        "Immersive brand experiences",
+        "Long-term narratives",
+        "Fresh, intentional thinking",
       ],
       className: "engagement-card--featured",
     },
     {
-      title: "An ongoing partner.",
-      label: "Build lasting momentum",
-      copy: "A team that knows your brand. Senior counsel and consistent execution.",
+      title: "Global ambition. African relevance.",
+      label: "Enter with understanding",
+      copy: "We help global brands approach African audiences with cultural understanding, clarity and confidence.",
       items: [
-        "Ongoing press office support",
-        "Campaign and reputation counsel",
-        "Long-term cultural relevance",
-        "Regular reporting and insight",
+        "Culturally accurate market entry strategies",
+        "Africa as a primary market",
+        "Local relevance and global standards",
+        "Narratives built alongside your brand",
       ],
       className: "",
     },
@@ -89,13 +73,13 @@ export function Engagements() {
   return (
     <section className="content-section engagements-section">
       <SectionHeading
-        eyebrow="Ways to work together"
+        eyebrow="Who we work with"
         title="Your ambition."
         accent="Our starting point."
       />
       <p className="section-centered-copy">
-        Every engagement starts with a conversation. We shape the scope around
-        what your brand needs.
+        African businesses and international brands. Shared ambition, fresh
+        thinking and a commitment to meaningful connections.
       </p>
       <div className="engagements-grid">
         {plans.map((plan) => (

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { founder } from "@/lib/content";
+import { company } from "@/lib/content";
 import { ButtonLink, SectionHeading } from "./BrandUI";
 
 export function Founder() {
@@ -34,7 +34,7 @@ export function Founder() {
           </div>
         </div>
         <div className="founder-copy" data-reveal>
-          <p className="eyebrow">Founded by {founder.name}</p>
+          <p className="eyebrow">Founded in {company.founded}</p>
           <h3>
             The brief is where
             <br />
@@ -42,7 +42,7 @@ export function Founder() {
             <br />
             <span className="accent-text">Not where we stop.</span>
           </h3>
-          <p>{founder.bio}</p>
+          <p>{company.partnership}</p>
           <ButtonLink href="/about" variant="outline">
             Meet MARKTN
           </ButtonLink>

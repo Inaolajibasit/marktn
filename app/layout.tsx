@@ -7,7 +7,7 @@ import "./globals.css";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.marktnpr.com";
 const SITE_TITLE = "MARKTN — Beyond the brief.";
 const SITE_DESCRIPTION =
-  "MARKTN is Africa's culturally intelligent luxury PR and marketing agency, building campaigns for global and African brands across fashion, beauty, hospitality and entertainment.";
+  "MARKTN is a next generation marketing and public relations company, founded in 2026 to connect African and global brands with Nigeria and the broader African market.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -19,11 +19,10 @@ export const metadata: Metadata = {
   icons: { icon: "/images/hero/favico.png", apple: "/images/hero/favico.png" },
   keywords: [
     "marktn PR",
-    "luxury PR agency Africa",
+    "marketing agency Africa",
     "African PR agency",
-    "brand strategy Lagos",
+    "marketing and public relations Nigeria",
     "experiential marketing Africa",
-    "Onyeka Nwonah",
   ],
   openGraph: {
     type: "website",
@@ -80,10 +79,10 @@ export default function RootLayout({
               alternateName: "marktn PR",
               url: SITE_URL,
               slogan: "Beyond the brief.",
-              founder: { "@type": "Person", name: "Onyeka Nwonah" },
+              foundingDate: "2026",
               sameAs: [
-                "https://www.instagram.com/marktnpr",
-                "https://www.linkedin.com/company/marktnpr",
+                "https://instagram.com/marktnagency?rpxt=MTB0dXJ3dW94a2U0cA%3D%3D",
+                "https://www.linkedin.com/company/marktn-agency/",
               ],
             }),
           }}

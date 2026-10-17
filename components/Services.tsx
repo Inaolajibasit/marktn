@@ -5,32 +5,39 @@ import { Arrow, SectionHeading } from "./BrandUI";
 
 const groups = [
   {
-    title: "Strategy & positioning",
-    copy: "Find your place in the culture. Then give people a reason to care.",
-    slugs: ["brand-strategy", "consulting"],
-    image: "/images/hero/image2.png",
-    className: "yellow",
-  },
-  {
-    title: "PR & communications",
-    copy: "The right story, in the right rooms. Reputation built with intention.",
-    slugs: ["public-relations", "media-relations"],
+    title: "Public & Media Relations",
+    copy: "Stories, reputation and editorial positioning rooted in an understanding of African audiences.",
+    slugs: ["public-relations"],
     image: "/images/hero/image1.png",
     className: "red",
   },
   {
-    title: "Culture & campaigns",
-    copy: "Ideas that earn attention. Partnerships that turn relevance into reach.",
-    slugs: ["influencer-marketing", "integrated-campaigns"],
+    title: "Influencer & Community Marketing",
+    copy: "Partnerships and community-led campaigns built on cultural understanding.",
+    slugs: ["influencer-marketing"],
     image: "/images/hero/image3.png",
     className: "dark",
   },
   {
-    title: "Experiences & production",
-    copy: "From the first idea to the final detail. Make your brand something people feel.",
-    slugs: ["experiential", "campaign-production"],
+    title: "Experiential Marketing",
+    copy: "Brand activations and immersive experiences that create moments, not just campaigns.",
+    slugs: ["experiential"],
     image: "/images/hero/hero2.png",
     className: "blue",
+  },
+  {
+    title: "Campaign Production",
+    copy: "Creative direction, content production and end-to-end campaign execution.",
+    slugs: ["campaign-production"],
+    image: "/images/hero/hero.png",
+    className: "yellow",
+  },
+  {
+    title: "Integrated Campaign",
+    copy: "Cross-channel strategy that connects digital, offline and experiential marketing.",
+    slugs: ["integrated-campaigns"],
+    image: "/images/hero/image2.png",
+    className: "red",
   },
 ];
 

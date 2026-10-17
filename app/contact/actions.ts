@@ -50,12 +50,12 @@ export async function submitContactForm(
     if (!process.env.RESEND_API_KEY)
       return {
         status: "error",
-        message: "Please email hello@marktnpr.com to start your enquiry.",
+        message: "Please email Info@marktn.com to start your enquiry.",
       };
     const resend = new Resend(process.env.RESEND_API_KEY);
     const { error } = await resend.emails.send({
       from: "MARKTN <enquiries@marktnpr.com>",
-      to: "hello@marktnpr.com",
+      to: "Info@marktn.com",
       replyTo: email,
       subject: `New enquiry — ${name}${company ? ` (${company})` : ""}`,
       text: `Name: ${name}\nEmail: ${email}\nService: ${service ?? "—"}\nCompany: ${company ?? "—"}\nBudget: ${budget ?? "—"}\n\n${message}`,
@@ -63,13 +63,13 @@ export async function submitContactForm(
     if (error) throw new Error("Email delivery failed");
     return {
       status: "success",
-      message: "Thank you — we'll reply within two business days.",
+      message: "Thank you — we’ve received your enquiry and will be in touch.",
     };
   } catch {
     return {
       status: "error",
       message:
-        "Something went wrong sending your message. Please email hello@marktnpr.com directly.",
+        "Something went wrong sending your message. Please email Info@marktn.com directly.",
     };
   }
 }
