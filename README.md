@@ -17,7 +17,7 @@ Run npm install, then npm run dev. Production checks are npm run typecheck, npm 
 - lib/content.ts holds deck-based company copy, four company roles, five values and five service groups, alongside inherited campaigns, statistics and testimonial placeholders. COMPANY_DECK.md records the source extraction.
 - Sanity manages journal posts, authors, categories, tags and Portable Text at /studio.
 - public/images/hero contains the supplied official logos, favicon, glossy artwork and campaign visuals.
-- public/images/work and public/images/founder contain unused legacy stock assets. Current pages use supplied brand artwork.
+- public/images/work/femmenature contains the supplied Femme Nature campaign photos; other legacy stock work/founder assets remain unused. About uses the approved owner portrait, and legacy project pages use supplied brand artwork.
 - app holds routes and metadata; components contains shared sections and controls.
 
 ## Integrations

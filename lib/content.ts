@@ -6,22 +6,106 @@ export type Campaign = {
   client: string;
   year: string;
   category:
-    "Luxury" | "Beauty" | "Entertainment" | "Launches" | "Events" | "PR";
+    | "Luxury"
+    | "Beauty"
+    | "Entertainment"
+    | "Launches"
+    | "Events"
+    | "PR"
+    | "Fashion";
   stat: string;
   description: string;
   heroImage: string;
+  imagePosition?: string;
   gallery: string[];
   overview: string;
   challenge: string;
   insight: string;
   strategy: string;
   execution: string;
+  resultsHeading?: string;
   results: { label: string; value: string }[];
-  pressCoverage: { outlet: string; headline: string }[];
+  pressCoverage: { outlet: string; headline: string; url?: string }[];
+  socialCoverage?: { label: string; url: string }[];
   featured: boolean;
 };
 
+// Femme Nature: femmenature.md and the linked Pulse Nigeria casting feature.
 export const campaigns: Campaign[] = [
+  {
+    slug: "femme-nature",
+    client: "Femme Nature",
+    year: "2026",
+    category: "Fashion",
+    stat: "Heat Check / Lagos",
+    description:
+      "Women shaping the story of Nigerian streetwear. The Lagos chapter of Heat Check.",
+    heroImage: "/images/work/femmenature/work11.jpg",
+    imagePosition: "center 25%",
+    gallery: [
+      "/images/work/femmenature/work1.webp",
+      "/images/work/femmenature/work2.webp",
+      "/images/work/femmenature/work3.webp",
+      "/images/work/femmenature/work5.webp",
+      "/images/work/femmenature/work6.webp",
+      "/images/work/femmenature/work7.webp",
+    ],
+    overview:
+      "Femme Nature is Severe Nature’s womenswear line, a space for women to explore streetwear, femininity and self-expression on their own terms. Heat Check, its second collection, brings that perspective into focus through the energy of Lagos and the women who shape it.",
+    challenge:
+      "How can a womenswear line create its own place in streetwear while staying rooted in Lagos? Femme Nature’s answer centres women in the creative process, from design and fittings to the people and stories seen in the campaign.",
+    insight:
+      "The community is part of the story. Through Femme Club and the For The Girls broadcast channel, women can connect, exchange ideas and take part in shaping the brand rather than simply shopping it.",
+    strategy:
+      "An open Lagos casting call led by Tara Gold invited women to show their own style. The community then had a voice in selecting the faces of the campaign, making participation part of the collection’s narrative.",
+    execution:
+      "Heat Check follows the rhythm of a Lagos Friday night: getting ready, dinner with friends and a night at the club. The campaign imagery brings the collection’s streetwear silhouettes and confident, feminine styling into that world. Further chapters are planned for London and Brazil.",
+    resultsHeading: "The casting story",
+    results: [
+      {
+        label: "Women entered the open casting call",
+        value: "50+",
+      },
+      {
+        label: "Finalists chosen through public and internal votes",
+        value: "10",
+      },
+      {
+        label: "Places to front the Lagos campaign",
+        value: "3",
+      },
+    ],
+    pressCoverage: [
+      {
+        outlet: "Pulse Nigeria",
+        headline: "Who gets to be a Femme Nature Girl? The women decided",
+        url: "https://www.pulse.ng/story/femme-nature-heat-check-lagos-casting-2026100214521533646",
+      },
+    ],
+    socialCoverage: [
+      {
+        label: "Campaign post 01",
+        url: "https://www.instagram.com/p/DeMjZWmCEZZ/?exln=MWt3YXloMnVvZ3A1bw==",
+      },
+      {
+        label: "Campaign post 02",
+        url: "https://www.instagram.com/p/DeURuvgiH_E/?img_index=4&vrfl=d252YTRyemw2b3J2",
+      },
+      {
+        label: "Campaign post 03",
+        url: "https://www.instagram.com/p/DeKKx0SDGak/?cplk=YXFpemlyY2NsOG8x",
+      },
+      {
+        label: "Campaign post 04",
+        url: "https://www.instagram.com/p/DeBsZ8NDctq/?img_index=3&cplk=eTU4bzdsMnFlcDBt",
+      },
+      {
+        label: "Campaign post 05",
+        url: "https://www.instagram.com/p/Ddy4ZRNiwS-/?mdxt=djd4bzhvMzB5ODdv",
+      },
+    ],
+    featured: false,
+  },
   {
     slug: "dior-lagos-launch",
     client: "Dior",
@@ -488,6 +572,59 @@ export const company = {
     "MARKTN is marketing, just not as you know it. Our identity is bold, unconventional and built around the idea of going beyond the brief. The asterisk points to something beyond what’s written: more to explore, question and uncover. Placed on the K, it turns the deliberate difference in our name into our most recognizable symbol.",
 };
 
+// Owner career details: MARKTN-Portfolio.pptx, slides 1-2, 4-11, 13 and 15.
+// These are Onyeka's career credits, including roles before MARKTN.
+export const owner = {
+  name: "Onyeka Nwonah",
+  title: "Founder & CEO, MARKTN",
+  portrait: "/images/founder/onyeka-nwonah.png",
+  linkedin: "https://www.linkedin.com/in/onyekachukwu-nwonah-2166a023a/",
+  introduction:
+    "A PR and brand strategist with over five years of experience building campaigns across luxury, beauty, FMCG and entertainment in Nigeria.",
+  perspective:
+    "Her work brings cultural understanding and emotional intelligence to brand storytelling, influencer partnerships and live experiences. The belief that African consumers deserve campaigns built around their own realities is the conviction behind MARKTN.",
+  statistics: [
+    { value: "5+", label: "Years of experience" },
+    { value: "40+", label: "Career campaigns" },
+  ],
+  experience: [
+    {
+      company: "Beguile by Omaa",
+      role: "Creative & Content Manager",
+      detail:
+        "Creative and content work on Golden Kiss, alongside influencer partnerships and the ISWIS podcast sponsorship.",
+    },
+    {
+      company: "Beauty Hut Africa",
+      role: "Marketing & PR Executive",
+      detail:
+        "Brand launches and cultural campaigns, including Danessa Myricks Beauty’s Nigeria debut and L’Oréal Professionnel Paris.",
+    },
+    {
+      company: "Redrick PR",
+      role: "PR Associate & PR Intern",
+      detail:
+        "Campaign and event experience involving LVMH and L’Oréal brands, Prime Video premieres and Lagos Fashion Week.",
+    },
+  ],
+  brands: [
+    "LVMH",
+    "L’Oréal Group",
+    "Prime Video",
+    "Veuve Clicquot",
+    "Hennessy",
+    "Maybelline NY",
+    "Ralph Lauren",
+    "CeraVe",
+    "818 Spirits",
+    "Danessa Myricks Beauty",
+    "Beauty Hut Africa",
+    "Beguile by Omaa",
+  ],
+  education:
+    "B.Sc. Mass Communication (Broadcasting), Babcock University. Google Digital Marketing certified.",
+};
+
 export const companyRoles = [
   {
     name: "Cultural Interpreter",
@@ -534,6 +671,7 @@ export const values = [
 
 export const CATEGORIES = [
   "All",
+  "Fashion",
   "Luxury",
   "Beauty",
   "Entertainment",

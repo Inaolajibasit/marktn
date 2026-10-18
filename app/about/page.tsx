@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { OwnerProfile } from "@/components/OwnerProfile";
 import {
   PageIntro,
   SectionHeading,
@@ -57,6 +58,7 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
+      <OwnerProfile />
       <section
         className="content-section about-purpose"
         aria-labelledby="about-purpose-title"
@@ -182,25 +184,6 @@ export default function AboutPage() {
           </h2>
           <p>{company.identity}</p>
         </div>
-      </section>
-      <section
-        className="content-section"
-        aria-labelledby="onyeka-contact-title"
-      >
-        <SectionHeading
-          eyebrow="A personal conversation"
-          id="onyeka-contact-title"
-          title="Reach Onyeka."
-          accent="Directly."
-        >
-          <p>To speak with Onyeka personally, get in touch directly.</p>
-          <a
-            className="about-contact-email"
-            href={"mailto:" + company.onyekaEmail}
-          >
-            {company.onyekaEmail}
-          </a>
-        </SectionHeading>
       </section>
       <section className="page-section" aria-labelledby="about-contact-title">
         <div className="service-cta">

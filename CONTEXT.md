@@ -1,6 +1,6 @@
 # Codebase context
 
-Last updated: 2026-10-17
+Last updated: 2026-10-18
 
 ## Maintenance
 
@@ -33,7 +33,7 @@ MARKTN is a public marketing and portfolio website for a marketing and public re
 - lib/sectionRules.ts: scoped scroll-triggered hairline animation; lib/utils.ts: class merging.
 - sanity/: environment defaults, client, cached fetch helper, GROQ queries, image URL builder, types, and schemas.
 - sanity.config.ts: embedded Studio configuration and editing tools.
-- public/images/: supplied identity artwork under images/hero; legacy founder/work stock images remain on disk but are unused by the redesigned site.
+- public/images/: supplied identity artwork under images/hero and the approved owner portrait at images/founder/onyeka-nwonah.png; legacy founder/work stock images remain on disk but are unused.
 - tailwind.config.ts and app/globals.css: design tokens and global styling.
 - app/page-v2.tsx: alternate homepage implementation; no imports referencing it were found in the source review. The active homepage is app/page.tsx.
 
@@ -42,10 +42,10 @@ MARKTN is a public marketing and portfolio website for a marketing and public re
 | Route | Behavior |
 | --- | --- |
 | / | Atlas-inspired hero, partner strip, project grid, impact receipt, stacked services, Who We Are, client audiences, testimonials, company story, journal and contact |
-| /about | Company story, four roles, purpose, mission and vision, approach, five values, target clients, identity and contact |
+| /about | Company story, owner profile and portrait, four roles, purpose, mission and vision, approach, five values, target clients, identity and contact |
 | /services | Shared service overview component |
 | /services/[slug] | Five deck-based service detail pages with audience, deliverables, FAQs, and enquiry link |
-| /work | Client-side category filtering over four local campaigns |
+| /work | Client-side category filtering over five local campaigns, including Fashion / Femme Nature |
 | /work/[slug] | Static case studies with galleries, challenge, insight, strategy, execution, results, press coverage, and next campaign |
 | /press | Shared list of press mentions |
 | /blog | Sanity articles, featured article, category filters, and client-side load more in batches of six |
@@ -62,11 +62,11 @@ MARKTN is a public marketing and portfolio website for a marketing and public re
 
 The content setup is hybrid:
 
-1. Agency content is imported from lib/content.ts. It includes four inherited campaigns, five deck-based services, press mentions, brand partners, testimonials, legacy impact statistics, company information, four company roles, and five values. The redesign uses the supplied MARKTN identity artwork through next/image as visual treatments for projects, not documentary campaign photography. Existing campaign and press claims remain inherited. The unsupported founder biography/timeline was removed; the active company story uses the deck’s 2026 founding date. The homepage impact receipt uses the original impactStats at the user’s request: ₦18.8M+ PR value, 10.9M+ impressions, 40+ campaigns, 30K+ community reached, and four countries. These inherited metrics are not substantiated by the company deck.
+1. Agency content is imported from lib/content.ts. It includes five campaigns (four inherited entries and the sourced Femme Nature project), five deck-based services, press mentions, brand partners, testimonials, legacy impact statistics, company information, four company roles, and five values. Legacy projects use supplied MARKTN identity artwork through next/image; Femme Nature uses a supplied work11.jpg cover and six gallery photographs from public/images/work/femmenature. Existing campaign and press claims remain inherited. The unsupported founder biography/timeline was replaced by a sourced owner profile using MARKTN-Portfolio.pptx; the active company story retains the company deck’s 2026 founding date. The homepage impact receipt uses the original impactStats at the user’s request: ₦18.8M+ PR value, 10.9M+ impressions, 40+ campaigns, 30K+ community reached, and four countries. These inherited metrics are not substantiated by the company deck.
 2. Blog content is fetched from Sanity on the server. Schemas cover posts, authors, categories, tags, and blockContent. Rich blocks include images, galleries, quotes, statistics, CTAs, and video links.
 3. sanity/lib/fetch.ts applies a 60-second revalidation interval and the sanity-content tag. The client uses the Sanity CDN. HomeBlog requests the three latest eligible posts and shows a neutral empty state if unavailable. The journal index distinguishes fetch failures from an empty collection.
 4. Work and service slugs are generated from static content. Blog slugs are generated from Sanity.
-5. General contact links use Info@marktn.com; Onyeka@marktn.com appears only in a dedicated Reach Onyeka section on About. The contact action validates name, email, company, budget, service, and message, then sends a plain-text enquiry through Resend to Info@marktn.com with the sender email as replyTo. Newsletter signup creates a contact; newsletter campaign sending is not implemented here.
+5. General contact links use Info@marktn.com; Onyeka@marktn.com appears in the owner profile on About. The contact action validates name, email, company, budget, service, and message, then sends a plain-text enquiry through Resend to Info@marktn.com with the sender email as replyTo. Newsletter signup creates a contact; newsletter campaign sending is not implemented here.
 
 ## Design and interaction
 
@@ -109,14 +109,18 @@ Source: IdentityDeck.pdf, 20 pages, October 2026, designed by Winx Studio. Revie
 
 ## Company deck reference
 
-CompanyDeck.pdf (MARKTN Company Deck v1., October 2026, 13 pages) was fully extracted and visually reviewed on 2026-10-15. COMPANY_DECK.md records its substantive content with page references, all five service groups and seventeen capabilities, source wording issues, visual observations, and website alignment notes. The deck describes a marketing and PR company founded in 2026 serving African businesses across industries and global entrants, and gives onyeka@marktn.com as its contact. It supersedes the previous luxury-only positioning and eight-service structure. Site copy now follows the deck: About is expanded, five service groups replace eight entries, public contact links use the user-confirmed general address Info@marktn.com, and the homepage process section is replaced in place by Who We Are. Enquiry delivery now goes to Info@marktn.com. The authenticated sender remains enquiries@marktnpr.com; site origin is unchanged. Personal contact is separated into the About page’s Reach Onyeka section. The deck contains no named client work, performance metrics, founder biography or testimonial evidence.
+CompanyDeck.pdf (MARKTN Company Deck v1., October 2026, 13 pages) was fully extracted and visually reviewed on 2026-10-15. COMPANY_DECK.md records its substantive content with page references, all five service groups and seventeen capabilities, source wording issues, visual observations, and website alignment notes. The deck describes a marketing and PR company founded in 2026 serving African businesses across industries and global entrants, and gives onyeka@marktn.com as its contact. It supersedes the previous luxury-only positioning and eight-service structure. Site copy now follows the deck: About is expanded, five service groups replace eight entries, public contact links use the user-confirmed general address Info@marktn.com, and the homepage process section is replaced in place by Who We Are. Enquiry delivery now goes to Info@marktn.com. The authenticated sender remains enquiries@marktnpr.com; site origin is unchanged. Personal contact is separated into the About page’s owner profile. The deck contains no named client work, performance metrics, founder biography or testimonial evidence.
+
+## Owner portfolio reference
+
+MARKTN-Portfolio.pptx (15 slides, portfolio labelled 2025–2026) was fully text-extracted on 2026-10-18. Slides 1–2 support Onyeka Nwonah’s name, Founder & CEO title, 5+ years, 40+ career campaigns, education and specialisms. Slides 4–11 and 13 describe Beguile by Omaa, Beauty Hut Africa and Redrick PR roles and selected brand work. Slide 15 provides her personal LinkedIn URL. The supplied photo was copied without alteration to public/images/founder/onyeka-nwonah.png. components/OwnerProfile.tsx is About-only and replaces the old Reach Onyeka block; it appears after the company story. lib/content.ts exports owner data separately from company data. Portfolio employment dates conflict with some campaign dates, so the published profile lists role/organization and work without reproducing a dated timeline. Portfolio claims are supplied-source statements, not independent verification. Earlier campaign work is explicitly attributed to her career, including previous roles. General email remains Info@marktn.com and direct owner email remains Onyeka@marktn.com, overriding the portfolio’s Gmail contact.
 
 ## Known gaps and resolved findings
 
 - Sanity Studio preview references /api/draft-mode/enable, but that route remains absent.
 - Blog detail, slug and related-post queries do not consistently exclude future-dated posts.
-- Existing testimonials are explicitly placeholder quotes awaiting approved attribution. Campaign metrics and press claims remain inherited content, not independently verified facts; the company deck does not substantiate these. Founder history was removed from active pages.
-- Legacy work images repeat stock photography, and the legacy founder image is a fashion advertisement. These remain on disk but are no longer used by the redesigned pages; genuine campaign photography and an approved founder portrait can replace identity artwork later.
+- Existing testimonials are explicitly placeholder quotes awaiting approved attribution. Campaign metrics and press claims remain inherited content, not independently verified facts; the company deck does not substantiate these. Owner biography and selected career credits now come from the supplied MARKTN-Portfolio.pptx; these are personal career credits, not claims that MARKTN delivered all the work.
+- Legacy work images repeat stock photography, and the legacy founder image is a fashion advertisement. These remain on disk but are unused. The About owner profile now uses the user-supplied public/images/founder/onyeka-nwonah.png portrait; genuine photography is still needed for the legacy projects. Femme Nature now uses the supplied campaign photos.
 - Public contact/newsletter handlers have no explicit rate limiting or bot protection.
 - CursorAperture still contains a ticker cleanup issue, but it is no longer mounted. app/page-v2.tsx is also unused.
 - Resolved in the redesign: React 18 contact form compatibility, Resend error checking, missing sharing image, placeholder WhatsApp link, mobile focus trapping/restoration, outdated README and Next build root inference.
@@ -223,3 +227,36 @@ Local reference screenshots and browser verification scripts/results are under i
 
 - Updated components/Footer.tsx to render public/images/hero/LOGO-WHITE.svg instead of the shared PNG logo, retaining the original 399:167 aspect ratio and existing footer-wordmark/brand-logo styles.
 - Verification: confirmed the asset exists, inspected SVG dimensions, and read back the source reference. Browser/build checks were not run for this asset-only substitution.
+
+### 2026-10-18 - Owner profile from supplied portfolio
+
+- Added components/OwnerProfile.tsx, separate owner data in lib/content.ts, and responsive owner-section styles in app/globals.css. Updated app/about/page.tsx to show the owner profile after the company story and remove the old duplicate personal-contact section.
+- Used the supplied portrait as public/images/founder/onyeka-nwonah.png. Bio, career totals, three experience entries, education, twelve selected brand names and personal LinkedIn come from MARKTN-Portfolio.pptx; retained the user-confirmed Onyeka@marktn.com direct address. Homepage unchanged.
+- Verification: formatter, standalone TypeScript, production build (including lint/type checks and all 27 generated pages), and git diff --check passed. Browser checks passed at 1440×1000, 375×812 and 812×375: About returned 200, portrait loaded, twelve brand credits and three role entries rendered, direct email was correct, and no page errors or horizontal overflow occurred. Desktop/mobile screenshots and portrait crops were visually reviewed. Two standalone targeted lint attempts timed out, but the production build’s lint stage completed successfully. Source extraction and QA files are under ignored tmp/owner-profile.
+
+### 2026-10-18 - Femme Nature project
+
+- Added the Femme Nature / Heat Check case study at /work/femme-nature in lib/content.ts, based on femmenature.md and the user-supplied Pulse Nigeria feature (Who gets to be a Femme Nature Girl? The women decided, 2 October 2026). Added Fashion category/filter, all ten supplied WebP images (one cover and nine gallery photos, with no duplicate) and a custom image focal position. New entry appears first in existing homepage/Projects grids; existing three-item hero carousel stays unchanged.
+- Added optional campaign press URLs, socialCoverage, resultsHeading and imagePosition support in the data model and app/work/[slug]/page.tsx; linked Pulse and all five supplied Instagram URLs, with responsive link styling in app/globals.css. components/FeaturedWork.tsx respects the photo focal position. Sitemap/static route generation already derives from campaigns.
+- Instagram captions could not be fetched, so posts use neutral numbered labels. Pulse supports the 2026 campaign date and casting figures (50+ entries, ten finalists, three campaign places). No unprovided agency role, sales/reach metrics, or completed London/Brazil expansion was claimed; the latter remains planned. The user’s 2025 brand-launch date is distinct from the 2026 campaign coverage.
+- Verification: TypeScript, targeted ESLint, production build (28 generated pages including /work/femme-nature) and git diff --check passed. Desktop/mobile browser checks at 1440×1000 and 375×812 passed: case study returned 200, all ten photos loaded (cover + nine gallery images), five Instagram links and Pulse link rendered, Fashion filtering and all five project cards worked, and the existing hero carousel remained functional with zero page errors or horizontal overflow. Desktop/mobile screenshots were visually reviewed. Verification files are under ignored tmp/femme-nature.
+
+### 2026-10-18 - Femme Nature cover replacement
+
+- Updated the Femme Nature heroImage in lib/content.ts to /images/work/femmenature/work11.jpg. Set its focal position to center 25% to keep both subjects visible in wide cover/card crops. The nine-image gallery remains unchanged. The shared source updates the homepage card, Projects card, case-study cover and sharing metadata.
+- Verification: confirmed the new asset exists, visually inspected it and read back the updated source path. Browser/build checks were not rerun for this image substitution.
+
+### 2026-10-18 - Shorter Femme Nature gallery
+
+- Reduced the Femme Nature gallery in lib/content.ts from nine to six photos, keeping its first six images (work1, work2, work3, work5, work6 and work7). The separate work11.jpg cover remains unchanged.
+- Verification: read the gallery array, confirmed six selected assets exist, and verified the cover source is unchanged. Browser/build checks were not rerun for this content-only reduction.
+
+### 2026-10-18 - KASTERISK favicon
+
+- Updated app/layout.tsx to use public/images/hero/KASTERISK.png for the site favicon and Apple touch icon. Corrected the current Femme Nature gallery summary in this context.
+- Verification: confirmed the supplied PNG exists and is nonempty, read back both metadata references, and ran git diff --check for app/layout.tsx and CONTEXT.md. Browser/build checks were not rerun for this asset-reference change.
+
+### 2026-10-18 - Preserve favicon proportions
+
+- Added public/images/hero/KASTERISK-icon.png, a 512 by 512 transparent square containing the original 258 by 178 KASTERISK.png at its original aspect ratio. Updated app/layout.tsx favicon and Apple icon references to the square asset; the supplied original is unchanged.
+- Verification: confirmed generated PNG dimensions and alpha channel. Browser/build checks were not rerun for this asset formatting fix.

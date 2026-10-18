@@ -68,9 +68,9 @@ export function Services() {
             }
           >
             <div className="service-stack-copy">
-              <span className="service-number">
+              {/* <span className="service-number">
                 0{i + 1} / Our capabilities
-              </span>
+              </span> */}
               <h3>{group.title}</h3>
               <p>{group.copy}</p>
               <div className="service-links">

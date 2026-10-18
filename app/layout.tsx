@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s — MARKTN",
   },
   description: SITE_DESCRIPTION,
-  icons: { icon: "/images/hero/favico.png", apple: "/images/hero/favico.png" },
+  icons: { icon: "/images/hero/KASTERISK-icon.png", apple: "/images/hero/KASTERISK-icon.png" },
   keywords: [
     "marktn PR",
     "marketing agency Africa",

@@ -23,6 +23,7 @@ export function ProjectCard({
         <div className="project-image">
           <Image
             src={campaign.heroImage}
+            style={{ objectPosition: campaign.imagePosition }}
             alt={campaign.client + " campaign"}
             fill
             sizes="(max-width: 700px) 92vw, 46vw"

@@ -1,0 +1,45 @@
+[Femme Nature: Nigerian Female Fashion Brand Making Waves In the Global Female Streetwear Industry]
+Meet Femme Nature: The Nigerian Brand Taking Female Streetwear Global
+Nigerian streetwear is no longer something the rest of the world can overlook.
+From music and nightlife to fashion and youth culture, Lagos has become a major source of creative energy, influencing conversations far beyond Nigeria. Among the brands helping to carry that energy into the wider world is Severe Nature, a Nigerian-Canadian streetwear label with roots in Lagos and a growing international footprint.
+Now, that story is taking a new direction with Femme Nature.
+Femme Nature is Severe Nature's womenswear line and a growing space for women to explore streetwear, femininity, confidence, individuality, and self-expression on their own terms. While Femme Nature is still young, it is not entering the global streetwear conversation without a foundation.
+It comes from a brand that has spent more than a decade building a community around fashion and youth culture, moving between Lagos and international creative spaces, and finding ways to take Nigerian culture with it.
+Now, Femme Nature is asking a new question:
+What does female streetwear look like when women are at the centre of defining it?
+From Severe Nature to Femme Nature
+Severe Nature was established in 2012 by Christopher Afolabi, Tobi Adeleye, and the late Michael Atobalele, also known as Uzii. The story began in Lagos, where its founders were young Nigerian creatives influenced by everything around them, from African culture and local street life to MTV, hip-hop, sports, music, and the wider global youth culture they were consuming.
+The result was a style that feels distinctly African without being limited to an African audience. It drew from Nigerian culture while engaging with the same global streetwear influences shaping young people everywhere. Over the years, that approach has taken us far beyond Lagos.
+Severe Nature has built physical experiences and pop-ups in cities including London, Paris, Barcelona, and Dubai, creating opportunities to meet new audiences while connecting with African and creative communities in each location. Its international presence has also attracted attention from global fashion and culture media, including Teen Vogue, Hypebae, Complex, OkayAfrica, Fucking Young, and PauseHER. Then came another significant milestone.
+Severe Nature's Omo Eko capsule was featured in Vogue Business as part of a conversation about how African fashion brands navigate pricing between local and international markets.
+The feature speaks to a balance Severe Nature has been navigating for years: how do you build a brand that remains connected to where it comes from while speaking to people far beyond it?
+For Severe Nature, the answer has never been to choose between the two. It has been to build something rooted enough to remain recognisable and open enough to travel, which is the foundation Femme Nature inherits.
+The Women Were Already There
+Long before Femme Nature officially launched, women around Severe Nature were already wearing the brand, styling its pieces, and becoming part of the community surrounding it. There was clearly a commitment to building for women with greater care and intention.
+In 2025, that became Femme Nature, Severe Nature's first dedicated womenswear line. But the idea was bigger than simply adding women's clothing to the brand.
+Femme Nature was created as a space where women could have a stronger voice in how streetwear is designed, styled, experienced, and interpreted. At the centre of that shift is Solidad, Femme Nature's Creative Director.
+Rather than taking an existing male-centred streetwear formula and simply adapting it for women, Femme Nature places women's perspectives into the creative process itself, from design and fittings to storytelling and visual direction. The result is a womenswear line that is not trying to convince women to fit into an existing idea of streetwear. It is asking what streetwear can look like when women have more say in defining their fashion.
+There Is No Single Way to Be Femme
+Our approach to clothing combines contemporary streetwear with African influences while placing confidence and self-expression at the centre. A philosophy that can be seen in the clothes themselves.
+Femme Nature collection includes graphic dresses, jerseys, Capri separates, baby tees, bikinis, hats, and accessories. The line moves between relaxed streetwear staples and more feminine silhouettes, giving women room to decide how much of either side they want to bring into a look. You can be sexy, bold, understated, playful, sporty, or a combination of all five because there is no fixed Femme Nature woman.
+Beyond The Clothes, It Is a Community
+Femme Nature's physical spaces have provided places for young creatives to gather, create, learn, and engage with one another. Its international pop-ups have also been used to connect with different communities rather than simply place products in a new city.
+Femme Nature carries that same philosophy into womenswear. The brand has built community into its model through Femme Club, alongside gatherings, industry conversations, workshops, networking opportunities, and other experiences designed to bring women together.
+Its first collection, For The Girls, was introduced through intimate gatherings that gave women an opportunity to meet, connect, and experience the brand together. Femme Nature is not positioning women simply as shoppers; it wants them to be part of the culture around the clothes. This fact becomes especially clear with its latest collection.
+Heat Check Is Femme Nature in Motion
+Heat Check, Femme Nature's second womenswear collection, takes the brand's ideas about confidence, femininity, streetwear, and community and puts them into motion. If there is one word at the heart of the collection, it is audacity.
+The audacity to be unapologetically Femme, sexy, and to wear what makes you feel like your most confident self.
+For the Heat Check campaign, the women are not presented as distant campaign faces. They are part of the story. More than 50 women entered an open casting call in Lagos made by Tara Gold. But the final decision was not left entirely behind closed doors. 
+Femme Nature invited its community into the process, allowing the women to decide who would join Tara Gold to front the Lagos chapter of the campaign. As such, what began as a casting exercise became another example of the kind of community Femme Nature wants to build.
+Lagos Is Part of the Design Language
+If Femme Nature wants to participate in global streetwear, it does not have to leave Lagos behind to do it. In fact, the city is part of what gives the brand its character.
+Lagos has become one of Africa's most visible creative centres because of its nightlife, the styling, the music, the energy, the women, and the way people move through the city. For a streetwear brand, that environment provides more than a backdrop; it is a living source of inspiration.
+That influence could be seen in the Heat Check campaign. Tara Gold and the Heat Check girls take us through a familiar Lagos Friday night, from getting ready with their faces beat and skin glowing, to dinner, conversations, laughter, and eventually a night at the club.
+It is a familiar Lagos Friday-night ritual, captured through the lens of Femme Nature.
+From Lagos to London and Brazil
+Femme Nature is expanding because being rooted in Lagos does not mean staying in Lagos. Heat Check will extend beyond Lagos to London and Brazil, opening up the collection to women in different cities and giving them room to interpret the brand through their own cultures, identities, rhythms, and personal styles.
+The collection becomes a common language, while each woman brings her own accent. And that creates an opportunity for Nigerian female streetwear to participate in a much bigger fashion conversation. All without losing the cultural perspective that made it distinctive in the first place.
+The Future of Female Streetwear Is Personal
+Streetwear has always been about more than clothing. It carries music, identity, community, youth culture, creativity, and the freedom to express yourself. Femme Nature understands that. But it is adding something of its own: a distinctly feminine perspective shaped by women and informed by the culture around them.
+It is not trying to separate femininity from streetwear. It is showing that the two can exist together. It is not asking women to follow one definition of what it means to be Femme. It is giving them room to create their own. And it is not treating Nigerian culture as something that has to stay local. It is taking that culture global.
+Femme Nature is still in its early chapters, with plans to keep growing to include new voices, perspectives and collections. However the direction is clear: to create a world where women can see themselves, express themselves and shape the culture around the clothes they wear.

@@ -42,6 +42,7 @@ export default async function CaseStudyPage({
       <div className="case-study-cover">
         <Image
           src={campaign.heroImage}
+          style={{ objectPosition: campaign.imagePosition }}
           alt={campaign.client + " campaign hero"}
           fill
           priority
@@ -85,7 +86,7 @@ export default async function CaseStudyPage({
       </section>
       <section className="page-section">
         <div className="results-panel">
-          <p className="eyebrow">The results</p>
+          <p className="eyebrow">{campaign.resultsHeading ?? "The results"}</p>
           <dl>
             {campaign.results.map((result) => (
               <div key={result.label}>
@@ -103,7 +104,36 @@ export default async function CaseStudyPage({
             {campaign.pressCoverage.map((item) => (
               <li key={item.headline}>
                 <span>{item.outlet}</span>
-                <h3>{item.headline}</h3>
+                <h3>
+                  {item.url ? (
+                    <a href={item.url} target="_blank" rel="noreferrer">
+                      {item.headline} <span aria-hidden="true">↗</span>
+                    </a>
+                  ) : (
+                    item.headline
+                  )}
+                </h3>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+      {!!campaign.socialCoverage?.length && (
+        <section
+          className="page-section"
+          aria-labelledby="campaign-social-title"
+        >
+          <p className="eyebrow" id="campaign-social-title">
+            Campaign posts
+          </p>
+          <ul className="campaign-social-links">
+            {campaign.socialCoverage.map((post) => (
+              <li key={post.url}>
+                <a href={post.url} target="_blank" rel="noreferrer">
+                  {post.label}
+                  <span>Instagram</span>
+                  <Arrow />
+                </a>
               </li>
             ))}
           </ul>

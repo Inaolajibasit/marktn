@@ -2719,3 +2719,211 @@ h4 {
     transform: none;
   }
 }
+
+/* Owner profile: personal portfolio credits, distinct from agency work. */
+.owner-section {
+  background: var(--surface);
+}
+.owner-profile-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(36px, 6vw, 100px);
+  align-items: start;
+}
+.owner-portrait-column {
+  position: sticky;
+  top: 120px;
+}
+.owner-portrait {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--ink);
+}
+.owner-portrait img {
+  object-position: 50% 60%;
+}
+.owner-portrait-caption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 20px;
+  padding: 18px 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+.owner-portrait-caption span {
+  color: var(--muted);
+  font-weight: 400;
+}
+.owner-profile-copy h2 {
+  font-size: clamp(54px, 6vw, 94px);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+  margin-bottom: 30px;
+}
+.owner-profile-copy > p:not(.eyebrow) {
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  max-width: 62ch;
+}
+.owner-profile-copy > p.owner-introduction {
+  font-size: clamp(19px, 1.8vw, 24px);
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+}
+.owner-statistics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: 28px 0;
+  margin: 28px 0 36px;
+  border-block: 1px solid var(--line);
+  gap: 24px;
+}
+.owner-statistics > div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+}
+.owner-statistics dt {
+  font-size: 12px;
+}
+.owner-statistics dd {
+  color: var(--red);
+  font-size: clamp(42px, 4.5vw, 64px);
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+.owner-experience > h3 {
+  font-size: 22px;
+  letter-spacing: -0.035em;
+  margin-bottom: 12px;
+}
+.owner-experience li {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+.owner-experience h4 {
+  font-size: 18px;
+  letter-spacing: -0.025em;
+}
+.owner-experience li span {
+  display: block;
+  margin-top: 4px;
+  color: var(--red);
+  font-size: 11px;
+}
+.owner-experience li p {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.owner-profile-copy > p.owner-education {
+  margin-top: 24px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.owner-contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 30px;
+  margin-top: 28px;
+}
+.owner-contact-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  border-bottom: 1px solid currentColor;
+  padding-block: 10px;
+  min-height: 44px;
+}
+.owner-contact-links a:hover {
+  color: var(--red);
+}
+.owner-brand-experience {
+  border-top: 1px solid var(--line);
+  margin-top: clamp(48px, 6vw, 90px);
+  padding-top: 32px;
+}
+.owner-brand-experience > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 30px;
+  margin-bottom: 28px;
+}
+.owner-brand-experience .eyebrow {
+  margin-bottom: 0;
+}
+.owner-brand-experience > div > p:last-child {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.owner-brand-experience ul {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0 28px;
+}
+.owner-brand-experience li {
+  display: flex;
+  align-items: center;
+  min-height: 70px;
+  padding-block: 16px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-instrument), sans-serif;
+  font-size: clamp(17px, 1.6vw, 23px);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.035em;
+}
+@media (max-width: 800px) {
+  .owner-profile-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .owner-portrait-column {
+    position: static;
+    width: 100%;
+    max-width: 480px;
+    margin-inline: auto;
+  }
+  .owner-brand-experience ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 20px;
+  }
+}
+
+.campaign-social-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 36px;
+}
+.campaign-social-links a {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 0;
+  min-height: 44px;
+  border-bottom: 1px solid var(--line);
+  font-size: 16px;
+}
+.campaign-social-links a > span {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--muted);
+}
+.campaign-social-links a:hover,
+.press-list h3 a:hover {
+  color: var(--red);
+}
+@media (max-width: 700px) {
+  .campaign-social-links {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
