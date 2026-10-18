@@ -26,6 +26,16 @@ Copy .env.example to .env.local and supply the relevant credentials. RESEND_API_
 
 Sanity content uses a 60-second cache with a sanity-content tag. POST /api/revalidate accepts a bearer secret to invalidate it. Studio preview is still incomplete; see CONTEXT.md. General contact links and form enquiries use Info@marktn.com. Onyeka@marktn.com is reserved for the dedicated personal-contact section on About. The contact form sends enquiries to Info@marktn.com and reports email-service errors. Newsletter signup stores Resend contacts; this repository does not send newsletter campaigns.
 
+### Contact email setup
+
+1. Add and verify marktn.com in the Resend account used by RESEND_API_KEY. Publish the exact DNS records Resend supplies; see CONTACT_EMAIL_SETUP.md for this project's records. Keep the domain's existing mailbox MX records in place.
+2. Set CONTACT_FROM_EMAIL="MARKTN <Info@marktn.com>" in .env.local and in the hosting provider's environment variables, along with RESEND_API_KEY. This is also the default sender. The recipient remains Info@marktn.com and Reply-To is the visitor's email.
+3. Restart development after environment changes; redeploy for hosting environment changes. Production delivery requires the sending domain to be verified in that same Resend account.
+
+The server returns success only when Resend accepts the email and returns an email ID. Provider errors are logged server-side without logging the form submission; the form retains the visitor's input on failure and offers the general email address as a fallback.
+
+Run node --test tests/contact.test.cjs for the contact-action regression checks. They use an isolated email transport and never send actual emails.
+
 ## Project context
 
 Read CONTEXT.md for architecture, routes, known limitations and verification history. AGENTS.md requires keeping it updated after every codebase change. Some campaign copy and testimonials need final client approval before publication.

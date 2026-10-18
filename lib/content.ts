@@ -23,23 +23,29 @@ export type Campaign = {
   insight: string;
   strategy: string;
   execution: string;
+  executionHeading?: string;
+  executionSteps?: { title: string; copy: string }[];
   resultsHeading?: string;
+  resultsSummary?: string;
   results: { label: string; value: string }[];
+  pressHeading?: string;
   pressCoverage: { outlet: string; headline: string; url?: string }[];
   socialCoverage?: { label: string; url: string }[];
   featured: boolean;
 };
 
-// Femme Nature: femmenature.md and the linked Pulse Nigeria casting feature.
+// Femme Nature: femmenature.md, client-confirmed MARKTN involvement, and linked coverage.
+// Campaign metrics and Instagram feature attribution were supplied by the client.
+// Reach/social reach and mentions/social mentions are shared totals, not additive.
 export const campaigns: Campaign[] = [
   {
     slug: "femme-nature",
     client: "Femme Nature",
     year: "2026",
     category: "Fashion",
-    stat: "Heat Check / Lagos",
+    stat: "883.3K social media reach",
     description:
-      "Women shaping the story of Nigerian streetwear. The Lagos chapter of Heat Check.",
+      "Turning a collection launch into a community moment through open casting, storytelling and PR.",
     heroImage: "/images/work/femmenature/work11.jpg",
     imagePosition: "center 25%",
     gallery: [
@@ -51,58 +57,115 @@ export const campaigns: Campaign[] = [
       "/images/work/femmenature/work7.webp",
     ],
     overview:
-      "Femme Nature is Severe Nature’s womenswear line, a space for women to explore streetwear, femininity and self-expression on their own terms. Heat Check, its second collection, brings that perspective into focus through the energy of Lagos and the women who shape it.",
+      "For Heat Check, Femme Nature’s second womenswear collection, MARKTN’s work focused on giving women a part in the launch itself. The opportunity was to build attention for the collection through the people, personalities and culture already shaping its Lagos community.",
     challenge:
-      "How can a womenswear line create its own place in streetwear while staying rooted in Lagos? Femme Nature’s answer centres women in the creative process, from design and fittings to the people and stories seen in the campaign.",
+      "Femme Nature needed a launch that made its promise of confidence and self-expression tangible. The challenge was to turn interest in the clothes into participation in the brand, with a story that women would want to join, share and see themselves in.",
     insight:
-      "The community is part of the story. Through Femme Club and the For The Girls broadcast channel, women can connect, exchange ideas and take part in shaping the brand rather than simply shopping it.",
+      "Women were already styling Severe Nature and connecting through Femme Club and the For The Girls broadcast channel. Giving that community a voice in who represented the collection made the launch personal and gave participants a reason to bring their friends into the conversation.",
     strategy:
-      "An open Lagos casting call led by Tara Gold invited women to show their own style. The community then had a voice in selecting the faces of the campaign, making participation part of the collection’s narrative.",
+      "We made the casting process part of the launch story. An open invitation from Tara Gold encouraged women to introduce themselves in their own style; community voting then kept the audience involved. That participation became the foundation for a wider story about women shaping Nigerian streetwear.",
+    executionHeading: "The solution MARKTN brought",
     execution:
-      "Heat Check follows the rhythm of a Lagos Friday night: getting ready, dinner with friends and a night at the club. The campaign imagery brings the collection’s streetwear silhouettes and confident, feminine styling into that world. Further chapters are planned for London and Brazil.",
-    resultsHeading: "The casting story",
-    results: [
+      "Our approach connected community casting, campaign storytelling and PR, giving Femme Nature a launch story with people at its centre and reasons for audiences to take part.",
+    executionSteps: [
       {
-        label: "Women entered the open casting call",
-        value: "50+",
+        title: "Open the casting call",
+        copy: "The invitation, fronted by Tara Gold, asked women across Lagos to submit short videos expressing their personalities and style. With no modelling portfolio required, the call made room for women from the brand’s own audience to enter the campaign.",
       },
       {
-        label: "Finalists chosen through public and internal votes",
-        value: "10",
+        title: "Give the community a voice",
+        copy: "The For The Girls broadcast channel became the home of public voting. Women shared entries, supported their favourites and brought friends into the process, building conversation around Heat Check before the collection’s launch.",
       },
       {
-        label: "Places to front the Lagos campaign",
-        value: "3",
+        title: "Make the story feel like Lagos",
+        copy: "The campaign followed Tara and the Heat Check girls through a Friday night: getting ready, dinner with friends and a night at the club. Their individual styling connected the collection to the lives and culture of the women it was made for.",
+      },
+      {
+        title: "Give the media a story to tell",
+        copy: "The PR story centred on women choosing who would represent them and shaping their own place in streetwear. Coverage explored the casting, the community and the collection, giving the brand visibility across fashion, lifestyle and culture publications.",
       },
     ],
+    resultsHeading: "Participation. Conversation. Visibility.",
+    resultsSummary:
+      "The campaign recorded 883.3K social media reach and 10.7K social media interactions across 46 social mentions, including 3.9K likes. Of the recorded mentions, 35 were positive and none were negative. More than 50 women entered the casting call, turning audience interest into direct participation. Campaign results supplied by the client.",
+    results: [
+      {
+        label: "Social media reach",
+        value: "883.3K",
+      },
+      {
+        label: "Social media interactions",
+        value: "10.7K",
+      },
+      {
+        label: "Social mentions",
+        value: "46",
+      },
+      {
+        label: "Likes",
+        value: "3.9K",
+      },
+      {
+        label: "Positive mentions",
+        value: "35",
+      },
+      {
+        label: "Negative mentions",
+        value: "0",
+      },
+    ],
+    pressHeading: "Where our work was featured",
     pressCoverage: [
       {
         outlet: "Pulse Nigeria",
         headline: "Who gets to be a Femme Nature Girl? The women decided",
         url: "https://www.pulse.ng/story/femme-nature-heat-check-lagos-casting-2026100214521533646",
       },
-    ],
-    socialCoverage: [
       {
-        label: "Campaign post 01",
+        outlet: "Marie Claire Nigeria",
+        headline: "Femme Nature turns up the heat with its new collection, Heat Check",
+        url: "https://marieclaire.ng/femme-nature-turns-up-the-heat-with-its-new-collection-heat-check/",
+      },
+      {
+        outlet: "Deeds Magazine",
+        headline: "Femme Nature Turns Up the Heat With Its New Heat Check Collection",
+        url: "https://www.deedsmag.com/stories/femme-nature-turns-up-the-heat-with-its-new-heat-check-collection",
+      },
+      {
+        outlet: "Grix Magazine",
+        headline: "Who Gets to Be a Femme Nature Girl? The Women Decided",
+        url: "https://grixmag.com/featured/who-gets-to-be-a-femme-nature-girl-the-women-decided/",
+      },
+      {
+        outlet: "@go_liestylemag",
+        headline: "Femme Nature drops its second collection. Heat Check",
         url: "https://www.instagram.com/p/DeMjZWmCEZZ/?exln=MWt3YXloMnVvZ3A1bw==",
       },
       {
-        label: "Campaign post 02",
+        outlet: "@natif.shack",
+        headline: "Brand of the week",
         url: "https://www.instagram.com/p/DeURuvgiH_E/?img_index=4&vrfl=d252YTRyemw2b3J2",
       },
       {
-        label: "Campaign post 03",
+        outlet: "@theroseng_",
+        headline: "Heat Check collection by Severe Nature",
         url: "https://www.instagram.com/p/DeKKx0SDGak/?cplk=YXFpemlyY2NsOG8x",
       },
       {
-        label: "Campaign post 04",
+        outlet: "@grixmagazine",
+        headline: "Femme Nature is taking the heat outside today",
         url: "https://www.instagram.com/p/DeBsZ8NDctq/?img_index=3&cplk=eTU4bzdsMnFlcDBt",
       },
       {
-        label: "Campaign post 05",
+        outlet: "@marieclairenigeria",
+        headline: "Femme Nature is turning up the heat",
         url: "https://www.instagram.com/p/Ddy4ZRNiwS-/?mdxt=djd4bzhvMzB5ODdv",
       },
+    ],
+    socialCoverage: [
+      { label: "Severe Nature post 01", url: "https://www.instagram.com/p/Dc1hROztN7h/" },
+      { label: "Severe Nature post 02", url: "https://www.instagram.com/p/DdRnld2NGrD/" },
+      { label: "Severe Nature post 03", url: "https://www.instagram.com/p/DeULiYrt9Uy/" },
     ],
     featured: false,
   },

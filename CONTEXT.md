@@ -23,6 +23,7 @@ MARKTN is a public marketing and portfolio website for a marketing and public re
 - npm run build: production build in .next; npm start: serve that production build. next.config.mjs selects distDir by phase so production builds cannot overwrite development chunks.
 - npm run lint: eslint .; npm run typecheck: tsc --noEmit.
 - No dedicated test script is defined in package.json.
+- node --test tests/contact.test.cjs: contact-action regression tests with an isolated email transport; no real mail is sent.
 
 ## Structure
 
@@ -66,7 +67,7 @@ The content setup is hybrid:
 2. Blog content is fetched from Sanity on the server. Schemas cover posts, authors, categories, tags, and blockContent. Rich blocks include images, galleries, quotes, statistics, CTAs, and video links.
 3. sanity/lib/fetch.ts applies a 60-second revalidation interval and the sanity-content tag. The client uses the Sanity CDN. HomeBlog requests the three latest eligible posts and shows a neutral empty state if unavailable. The journal index distinguishes fetch failures from an empty collection.
 4. Work and service slugs are generated from static content. Blog slugs are generated from Sanity.
-5. General contact links use Info@marktn.com; Onyeka@marktn.com appears in the owner profile on About. The contact action validates name, email, company, budget, service, and message, then sends a plain-text enquiry through Resend to Info@marktn.com with the sender email as replyTo. Newsletter signup creates a contact; newsletter campaign sending is not implemented here.
+5. General contact links use Info@marktn.com; Onyeka@marktn.com appears in the owner profile on About. The contact action trims and validates form data, then sends a plain-text enquiry through Resend to Info@marktn.com with the visitor's email as replyTo. CONTACT_FROM_EMAIL configures the sender, defaulting to MARKTN <Info@marktn.com>. Only a successful provider response with an email ID returns success; provider failures are logged server-side without logging the submission. Newsletter signup creates a contact; newsletter campaign sending is not implemented here.
 
 ## Design and interaction
 
@@ -85,6 +86,7 @@ The content setup is hybrid:
 Variable names are listed in .env.example:
 
 - RESEND_API_KEY: contact email and newsletter integration.
+- CONTACT_FROM_EMAIL: optional server-side contact sender, default MARKTN <Info@marktn.com>; its domain must be verified in the same Resend account. CONTACT_EMAIL_SETUP.md contains this domain's public DNS records and activation instructions.
 - NEXT_PUBLIC_SANITY_PROJECT_ID and NEXT_PUBLIC_SANITY_DATASET: CMS project/dataset; sanity/env.ts contains fallback values.
 - SANITY_API_READ_TOKEN: documented variable, but not connected to the current Sanity client.
 - SANITY_REVALIDATE_SECRET: bearer secret for cache invalidation.
@@ -109,7 +111,7 @@ Source: IdentityDeck.pdf, 20 pages, October 2026, designed by Winx Studio. Revie
 
 ## Company deck reference
 
-CompanyDeck.pdf (MARKTN Company Deck v1., October 2026, 13 pages) was fully extracted and visually reviewed on 2026-10-15. COMPANY_DECK.md records its substantive content with page references, all five service groups and seventeen capabilities, source wording issues, visual observations, and website alignment notes. The deck describes a marketing and PR company founded in 2026 serving African businesses across industries and global entrants, and gives onyeka@marktn.com as its contact. It supersedes the previous luxury-only positioning and eight-service structure. Site copy now follows the deck: About is expanded, five service groups replace eight entries, public contact links use the user-confirmed general address Info@marktn.com, and the homepage process section is replaced in place by Who We Are. Enquiry delivery now goes to Info@marktn.com. The authenticated sender remains enquiries@marktnpr.com; site origin is unchanged. Personal contact is separated into the About page’s owner profile. The deck contains no named client work, performance metrics, founder biography or testimonial evidence.
+CompanyDeck.pdf (MARKTN Company Deck v1., October 2026, 13 pages) was fully extracted and visually reviewed on 2026-10-15. COMPANY_DECK.md records its substantive content with page references, all five service groups and seventeen capabilities, source wording issues, visual observations, and website alignment notes. The deck describes a marketing and PR company founded in 2026 serving African businesses across industries and global entrants, and gives onyeka@marktn.com as its contact. It supersedes the previous luxury-only positioning and eight-service structure. Site copy now follows the deck: About is expanded, five service groups replace eight entries, public contact links use the user-confirmed general address Info@marktn.com, and the homepage process section is replaced in place by Who We Are. Enquiry delivery goes to Info@marktn.com. The contact sender now defaults to MARKTN <Info@marktn.com> and can be configured through CONTACT_FROM_EMAIL; site origin is unchanged. Personal contact is separated into the About page’s owner profile. The deck contains no named client work, performance metrics, founder biography or testimonial evidence.
 
 ## Owner portfolio reference
 
@@ -117,6 +119,8 @@ MARKTN-Portfolio.pptx (15 slides, portfolio labelled 2025–2026) was fully text
 
 ## Known gaps and resolved findings
 
+- Resolved contact sending-domain blocker: after the user published the GoDaddy DNS records, the Resend API confirmed marktn.com and all four DNS records are verified on 2026-10-18 in the configured account. The local contact sender resolves to MARKTN <Info@marktn.com> and the recipient is Info@marktn.com. CONTACT_EMAIL_SETUP.md retains the verified records and deployment environment instructions. Deployed code/environment configuration and actual inbox delivery remain unverified; no live test message has been sent.
+- Femme Nature describes MARKTN's casting, community storytelling and PR approach following the user's confirmation of its involvement. Public sources support 50+ casting entries and coverage in Pulse Nigeria, Marie Claire Nigeria, Deeds Magazine and Grix Magazine. The client supplied campaign totals on 2026-10-18: 46 mentions/social mentions, 883.3K reach/social reach, 3.9K likes, 10.7K social media interactions, 35 positive mentions and zero negative mentions. Identical reach/mention totals are displayed once each, not added together. Figures are client-supplied and not independently audited; the other 11 mentions have no supplied sentiment classification. No monetary PR valuation, separate comment/share totals or reporting period was provided. All five Instagram media account names and titles are now supplied by the user and displayed separately from the three campaign posts; the earlier attribution gap is resolved.
 - Sanity Studio preview references /api/draft-mode/enable, but that route remains absent.
 - Blog detail, slug and related-post queries do not consistently exclude future-dated posts.
 - Existing testimonials are explicitly placeholder quotes awaiting approved attribution. Campaign metrics and press claims remain inherited content, not independently verified facts; the company deck does not substantiate these. Owner biography and selected career credits now come from the supplied MARKTN-Portfolio.pptx; these are personal career credits, not claims that MARKTN delivered all the work.
@@ -260,3 +264,42 @@ Local reference screenshots and browser verification scripts/results are under i
 
 - Added public/images/hero/KASTERISK-icon.png, a 512 by 512 transparent square containing the original 258 by 178 KASTERISK.png at its original aspect ratio. Updated app/layout.tsx favicon and Apple icon references to the square asset; the supplied original is unchanged.
 - Verification: confirmed generated PNG dimensions and alpha channel. Browser/build checks were not rerun for this asset formatting fix.
+
+### 2026-10-18 - Femme Nature solution and campaign evidence
+
+- Rewrote the Femme Nature entry in lib/content.ts around the client's confirmation of MARKTN involvement: open casting with Tara Gold, community voting, Lagos campaign storytelling and PR. Added optional executionHeading, executionSteps, resultsSummary and pressHeading fields and rendering in app/work/[slug]/page.tsx; other case studies retain their existing sections.
+- Results now highlight 50+ casting entries, hundreds participating in the casting conversation (Pulse Nigeria's qualitative description, not a measured engagement total), and four confirmed linked publications. Marie Claire Nigeria and Deeds Magazine describe the later six-woman cast, so the earlier three available casting places are no longer presented as the final cast size. Existing work11.jpg cover and six-photo gallery remain unchanged.
+- Renamed Femme Nature's media section to Where our work was featured, moved all five original Instagram media links there, and added verified Marie Claire Nigeria, Deeds Magazine and Grix Magazine stories alongside Pulse. Campaign posts now contains only the three user-provided URLs ending Dc1hROztN7h, DdRnld2NGrD and DeULiYrt9Uy.
+- Sources reviewed: femmenature.md; https://www.pulse.ng/story/femme-nature-heat-check-lagos-casting-2026100214521533646; https://marieclaire.ng/femme-nature-turns-up-the-heat-with-its-new-collection-heat-check/; https://www.deedsmag.com/stories/femme-nature-turns-up-the-heat-with-its-new-heat-check-collection; https://grixmag.com/featured/who-gets-to-be-a-femme-nature-girl-the-women-decided/. Instagram pages, embeds and exact-shortcode searches could not confirm account names or post metrics; those five media links use neutral feature labels pending the user's response. No PR monetary value or exact platform metrics were invented or borrowed from other projects.
+- Verification: standalone TypeScript, targeted ESLint and git diff --check passed. Desktop/mobile browser checks at 1440x1000 and 375x812 passed for four solution steps, six gallery images (decoded successfully), nine media links, the three exact campaign URLs, reported results, no horizontal overflow or page errors, and unchanged legacy case-study headings. QA script/results/screenshots: ignored tmp/femme-nature/revision-qa.cjs and revision-results.json. Production build was not rerun for this content/template update.
+
+### 2026-10-18 - Client-supplied Femme Nature campaign results
+
+- Updated lib/content.ts with the client's reported results: 883.3K social media reach, 10.7K interactions, 46 social mentions, 3.9K likes, 35 positive mentions and zero negative mentions. Reach and social reach describe the same supplied total, as do mentions and social mentions; neither is added twice. The results summary attributes figures to the client and retains the sourced 50+ casting entries. The project-card stat now highlights 883.3K social media reach.
+- Replaced all five neutral Instagram media labels with supplied handles and titles: @go_liestylemag, @natif.shack, @theroseng_, @grixmagazine and @marieclairenigeria. Preserved the corresponding original URLs and three separate campaign posts. Updated the known-gaps entry to resolve missing metrics/account attribution; monetary PR value remains unprovided.
+- Verification: targeted ESLint and git diff --check passed. Browser inspection at 1440x1000 and 375x812 returned 200, showed all six supplied metrics and all five attributed features, retained three campaign posts, and reported no page errors or horizontal overflow. Desktop results-panel screenshot was visually reviewed. Inspection script and screenshots are under ignored tmp/femme-nature/results-preview.cjs and results-*.png. Production build and standalone TypeScript were not rerun for this content-only update.
+
+### 2026-10-18 - Severe Nature post labels
+
+- Renamed Femme Nature's Campaign posts heading to Severe Nature posts in app/work/[slug]/page.tsx and its three link labels to Severe Nature post 01–03 in lib/content.ts. Preserved all URLs and the generic heading for other case studies.
+- Verification: read back the changed labels and ran git diff --check. Browser/build checks were not rerun for this text-only change.
+
+### 2026-10-18 - Link Severe Nature mentions
+
+- Added an inline brand-link renderer in app/work/[slug]/page.tsx so all six visible Severe Nature mentions link to https://www.severenature.com/, including narrative copy, the media headline, the social-section heading and three post labels. Normalized the media headline's Severnature spelling in lib/content.ts. Existing article and Instagram destinations remain available on the surrounding headline text, post numbers and dedicated Instagram buttons; links are never nested.
+- Updated app/globals.css to lay out brand and Instagram links separately in each campaign-social row. Only the brand-name text points to the website; the three specific campaign posts retain their original URLs.
+- Verification: TypeScript, targeted ESLint and git diff --check passed. Mobile browser inspection returned 200, found six brand links to the supplied URL, preserved all three Instagram post destinations, and found no nested anchors, page errors or horizontal overflow. Read-only inspection script: ignored tmp/femme-nature/brand-links-preview.cjs. Production build was not rerun for this link update.
+
+### 2026-10-18 - Contact form delivery setup and submission fixes
+
+- Diagnosed the existing valid Resend key: its account had no verified MARKTN sending domain, while app/contact/actions.ts used the unverified enquiries@marktnpr.com sender. The user chose to use the current account. Added marktn.com there, generated four DNS records and started verification; latest status is pending. Existing domains were unchanged. GoDaddy nameservers and Zoho MX were checked through public DNS. No real email was sent and no DNS records were modified.
+- Updated app/contact/actions.ts to trim submitted strings, accept absent optional company/budget fields, use CONTACT_FROM_EMAIL with MARKTN <Info@marktn.com> as the default sender, retain Info@marktn.com as recipient and the visitor as Reply-To, log provider failures without logging submissions, and require a returned email ID before success. Added the sender variable to .env.example; real API keys and local environment contents were not changed or recorded.
+- Fixed components/ContactForm.tsx validation focus: the old handler tried focusing fields while they were disabled. Focus now runs after the pending state clears, either on the first invalid field or the submission status. Failure retains inputs and successful submission resets them.
+- Added CONTACT_EMAIL_SETUP.md with the exact public Resend DNS records and GoDaddy activation steps, plus README setup/test instructions. DNS publication, domain verification and deployed environment settings remain external prerequisites; the form is not yet confirmed to deliver to the inbox.
+- Verification: all seven tests in tests/contact.test.cjs passed with an isolated transport, covering successful payloads, sender override, trimmed input, missing credentials, provider rejection, missing email ID and network failure. TypeScript, targeted ESLint and git diff --check passed. Mobile browser checks passed real invalid submission plus intercepted success/failure responses: invalid-field focus, retained inputs on failure, reset inputs on success, status focus, no page errors or horizontal overflow. Browser email-success responses were simulated, not live delivery. Initial browser capture attempts failed due unavailable development response bodies; a captured validation-response envelope was used for the simulated success/failure checks. QA artifacts are under ignored tmp/contact-setup. Production build, deployment and real inbox delivery were not verified.
+
+### 2026-10-18 - Confirm contact sending-domain verification
+
+- After the user configured GoDaddy DNS, queried the configured Resend account and confirmed marktn.com is verified, including DKIM TXT, send MX/TXT and rsend CNAME records. Confirmed the current local sender is MARKTN <Info@marktn.com> and recipient is Info@marktn.com.
+- Updated CONTACT_EMAIL_SETUP.md and this context to mark the DNS prerequisite complete. Application source and secrets were unchanged.
+- Verification: live read-only Resend domain lookup and git diff --check passed. No email was sent. Production deployment/environment and actual inbox delivery remain unverified; application tests were not rerun for this documentation-only status update.

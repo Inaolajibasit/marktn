@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useRef, useState, type FormEvent } from "react";
+import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { submitContactForm, type ContactState } from "@/app/contact/actions";
 import { services } from "@/lib/content";
 import { Arrow } from "./BrandUI";
@@ -17,6 +17,17 @@ export function ContactForm({
   const [pending, setPending] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const statusRef = useRef<HTMLParagraphElement>(null);
+  useEffect(() => {
+    if (pending) return;
+    const firstError = Object.keys(state.fieldErrors ?? {})[0];
+    if (firstError) {
+      formRef.current
+        ?.querySelector<HTMLElement>('[name="' + firstError + '"]')
+        ?.focus();
+    } else if (state.message) {
+      statusRef.current?.focus();
+    }
+  }, [state, pending]);
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (pending) return;
@@ -26,12 +37,6 @@ export function ContactForm({
       const result = await submitContactForm(state, data);
       setState(result);
       if (result.status === "success") formRef.current?.reset();
-      else if (result.fieldErrors) {
-        const first = Object.keys(result.fieldErrors)[0];
-        formRef.current
-          ?.querySelector<HTMLElement>('[name="' + first + '"]')
-          ?.focus();
-      }
     } catch {
       setState({
         status: "error",
@@ -176,6 +181,7 @@ export function ContactForm({
       {state.message && (
         <p
           ref={statusRef}
+          tabIndex={-1}
           role="status"
           aria-live="polite"
           className={"form-status form-status--" + state.status}

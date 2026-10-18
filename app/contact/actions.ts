@@ -4,12 +4,12 @@ import { z } from "zod";
 import { Resend } from "resend";
 
 const ContactSchema = z.object({
-  name: z.string().min(2, "Enter your full name."),
-  email: z.string().email("Enter a valid email address."),
-  service: z.string().max(100).optional(),
-  company: z.string().optional(),
-  budget: z.string().optional(),
-  message: z.string().min(10, "Tell us a little more about the project."),
+  name: z.string().trim().min(2, "Enter your full name."),
+  email: z.string().trim().email("Enter a valid email address."),
+  service: z.string().trim().max(100).optional(),
+  company: z.string().trim().optional(),
+  budget: z.string().trim().optional(),
+  message: z.string().trim().min(10, "Tell us a little more about the project."),
 });
 
 export type ContactState = {
@@ -26,8 +26,8 @@ export async function submitContactForm(
     name: formData.get("name"),
     email: formData.get("email"),
     service: formData.get("service") || undefined,
-    company: formData.get("company"),
-    budget: formData.get("budget"),
+    company: formData.get("company") || undefined,
+    budget: formData.get("budget") || undefined,
     message: formData.get("message"),
   });
 
@@ -47,25 +47,38 @@ export async function submitContactForm(
   const { name, email, service, company, budget, message } = parsed.data;
 
   try {
-    if (!process.env.RESEND_API_KEY)
+    if (!process.env.RESEND_API_KEY) {
+      console.error("Contact email is not configured: RESEND_API_KEY is missing.");
       return {
         status: "error",
         message: "Please email Info@marktn.com to start your enquiry.",
       };
+    }
     const resend = new Resend(process.env.RESEND_API_KEY);
-    const { error } = await resend.emails.send({
-      from: "MARKTN <enquiries@marktnpr.com>",
+    const { data, error } = await resend.emails.send({
+      from: process.env.CONTACT_FROM_EMAIL?.trim() || "MARKTN <Info@marktn.com>",
       to: "Info@marktn.com",
       replyTo: email,
       subject: `New enquiry — ${name}${company ? ` (${company})` : ""}`,
       text: `Name: ${name}\nEmail: ${email}\nService: ${service ?? "—"}\nCompany: ${company ?? "—"}\nBudget: ${budget ?? "—"}\n\n${message}`,
     });
-    if (error) throw new Error("Email delivery failed");
+    if (error || !data?.id) {
+      console.error("Contact email was not accepted by Resend.", {
+        name: error?.name ?? "missing_email_id",
+        message: error?.message ?? "Resend did not return an email ID.",
+      });
+      return {
+        status: "error",
+        message:
+          "We couldn’t send your enquiry. Please try again or email Info@marktn.com directly.",
+      };
+    }
     return {
       status: "success",
-      message: "Thank you — we’ve received your enquiry and will be in touch.",
+      message: "Thank you — your enquiry has been sent. We’ll be in touch.",
     };
   } catch {
+    console.error("Contact email failed before Resend could confirm acceptance.");
     return {
       status: "error",
       message:

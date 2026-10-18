@@ -5,6 +5,24 @@ import { notFound } from "next/navigation";
 import { campaigns, getCampaignBySlug, getNextCampaign } from "@/lib/content";
 import { Arrow, PageIntro } from "@/components/BrandUI";
 
+function LinkedBrandText({ text, href }: { text: string; href?: string }) {
+  return text.split(/(Severe Nature)/gi).map((part, index) => {
+    const isBrand = part.toLowerCase() === "severe nature";
+    const destination = isBrand ? "https://www.severenature.com/" : href;
+    return destination && part.trim() ? (
+      <a
+        key={index}
+        href={destination}
+        target="_blank"
+        rel="noreferrer"
+        className={isBrand ? "underline underline-offset-4" : undefined}
+      >
+        {part}
+      </a>
+    ) : part;
+  });
+}
+
 export function generateStaticParams() {
   return campaigns.map((campaign) => ({ slug: campaign.slug }));
 }
@@ -60,14 +78,24 @@ export default async function CaseStudyPage({
           ].map((section) => (
             <article key={section.title} data-reveal>
               <h2>{section.title}</h2>
-              <p>{section.copy}</p>
+              <p><LinkedBrandText text={section.copy} /></p>
             </article>
           ))}
         </div>
       </section>
       <section className="page-section">
-        <p className="eyebrow">From idea to impact</p>
-        <p className="service-detail-description">{campaign.execution}</p>
+        <p className="eyebrow">{campaign.executionHeading ?? "From idea to impact"}</p>
+        <p className="service-detail-description"><LinkedBrandText text={campaign.execution} /></p>
+        {!!campaign.executionSteps?.length && (
+          <div className="case-study-content mt-12">
+            {campaign.executionSteps.map((step) => (
+              <article key={step.title} data-reveal>
+                <h2>{step.title}</h2>
+                <p><LinkedBrandText text={step.copy} /></p>
+              </article>
+            ))}
+          </div>
+        )}
       </section>
       <section className="page-section">
         <div className="case-gallery">
@@ -95,23 +123,23 @@ export default async function CaseStudyPage({
               </div>
             ))}
           </dl>
+          {campaign.resultsSummary && (
+            <p className="mt-8 max-w-3xl text-sm leading-relaxed">
+              <LinkedBrandText text={campaign.resultsSummary} />
+            </p>
+          )}
         </div>
       </section>
       {!!campaign.pressCoverage.length && (
         <section className="page-section">
-          <p className="eyebrow">In the conversation</p>
+          <p className="eyebrow">{campaign.pressHeading ?? "In the conversation"}</p>
           <ul className="press-list">
             {campaign.pressCoverage.map((item) => (
               <li key={item.headline}>
                 <span>{item.outlet}</span>
                 <h3>
-                  {item.url ? (
-                    <a href={item.url} target="_blank" rel="noreferrer">
-                      {item.headline} <span aria-hidden="true">↗</span>
-                    </a>
-                  ) : (
-                    item.headline
-                  )}
+                  <LinkedBrandText text={item.headline} href={item.url} />
+                  {item.url && <span aria-hidden="true"> ↗</span>}
                 </h3>
               </li>
             ))}
@@ -124,16 +152,18 @@ export default async function CaseStudyPage({
           aria-labelledby="campaign-social-title"
         >
           <p className="eyebrow" id="campaign-social-title">
-            Campaign posts
+            <LinkedBrandText text={campaign.slug === "femme-nature" ? "Severe Nature posts" : "Campaign posts"} />
           </p>
           <ul className="campaign-social-links">
             {campaign.socialCoverage.map((post) => (
               <li key={post.url}>
-                <a href={post.url} target="_blank" rel="noreferrer">
-                  {post.label}
-                  <span>Instagram</span>
-                  <Arrow />
-                </a>
+                <div className="campaign-social-row">
+                  <span><LinkedBrandText text={post.label} href={post.url} /></span>
+                  <a href={post.url} target="_blank" rel="noreferrer" aria-label={"View " + post.label + " on Instagram"}>
+                    <span>Instagram</span>
+                    <Arrow />
+                  </a>
+                </div>
               </li>
             ))}
           </ul>
