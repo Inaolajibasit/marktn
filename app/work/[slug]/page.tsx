@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { campaigns, getCampaignBySlug, getNextCampaign } from "@/lib/content";
 import { Arrow, PageIntro } from "@/components/BrandUI";
+import { CountUpValue } from "@/components/CountUpValue";
 
 function LinkedBrandText({ text, href }: { text: string; href?: string }) {
   return text.split(/(Severe Nature)/gi).map((part, index) => {
@@ -118,7 +119,11 @@ export default async function CaseStudyPage({
           <dl>
             {campaign.results.map((result) => (
               <div key={result.label}>
-                <dd>{result.value}</dd>
+                <dd>
+                  {result.count ? (
+                    <CountUpValue value={result.value} {...result.count} />
+                  ) : result.value}
+                </dd>
                 <dt>{result.label}</dt>
               </div>
             ))}
@@ -139,7 +144,7 @@ export default async function CaseStudyPage({
                 <span>{item.outlet}</span>
                 <h3>
                   <LinkedBrandText text={item.headline} href={item.url} />
-                  {item.url && <span aria-hidden="true"> ↗</span>}
+                  {item.url && <Arrow className="inline-arrow" />}
                 </h3>
               </li>
             ))}

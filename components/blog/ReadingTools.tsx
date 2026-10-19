@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Arrow } from "@/components/BrandUI";
 export function ReadingTools({ title }: { title: string }) {
   const [progress, setProgress] = useState(0);
   const [message, setMessage] = useState("Share");
@@ -52,7 +53,7 @@ export function ReadingTools({ title }: { title: string }) {
         className="share-button"
         aria-live="polite"
       >
-        {message} ↗
+        {message} <Arrow className="inline-arrow" />
       </button>
     </>
   );

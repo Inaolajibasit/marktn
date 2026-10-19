@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ButtonLink } from "./BrandUI";
+import { Arrow, ButtonLink } from "./BrandUI";
 
 export function Footer() {
   return (
@@ -42,16 +42,16 @@ export function Footer() {
             target="_blank"
             rel="noreferrer"
           >
-            Instagram ↗
+            Instagram <Arrow className="inline-arrow" />
           </a>
           <a
             href="https://www.linkedin.com/company/marktn-agency/"
             target="_blank"
             rel="noreferrer"
           >
-            LinkedIn ↗
+            LinkedIn <Arrow className="inline-arrow" />
           </a>
-          <Link href="/contact">Start a conversation ↗</Link>
+          <Link href="/contact">Start a conversation <Arrow className="inline-arrow" /></Link>
         </div>
         <div>
           <h3>Beyond the brief</h3>
@@ -61,7 +61,7 @@ export function Footer() {
             Something worth paying attention to.
           </p>
           <Link href="/blog" className="footer-journal-link">
-            Read our latest thinking ↗
+            Read our latest thinking <Arrow className="inline-arrow" />
           </Link>
         </div>
       </div>

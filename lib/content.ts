@@ -27,7 +27,11 @@ export type Campaign = {
   executionSteps?: { title: string; copy: string }[];
   resultsHeading?: string;
   resultsSummary?: string;
-  results: { label: string; value: string }[];
+  results: {
+    label: string;
+    value: string;
+    count?: { to: number; prefix?: string; suffix?: string };
+  }[];
   pressHeading?: string;
   pressCoverage: { outlet: string; headline: string; url?: string }[];
   socialCoverage?: { label: string; url: string }[];
@@ -43,7 +47,7 @@ export const campaigns: Campaign[] = [
     client: "Femme Nature",
     year: "2026",
     category: "Fashion",
-    stat: "883.3K social media reach",
+    stat: "5M social media reach",
     description:
       "Turning a collection launch into a community moment through open casting, storytelling and PR.",
     heroImage: "/images/work/femmenature/work11.jpg",
@@ -87,32 +91,39 @@ export const campaigns: Campaign[] = [
     ],
     resultsHeading: "Participation. Conversation. Visibility.",
     resultsSummary:
-      "The campaign recorded 883.3K social media reach and 10.7K social media interactions across 46 social mentions, including 3.9K likes. Of the recorded mentions, 35 were positive and none were negative. More than 50 women entered the casting call, turning audience interest into direct participation. Campaign results supplied by the client.",
+      "The campaign recorded 5M social media reach, over 500K social media interactions, 500K likes and ₦10M in PR value. Across 46 social mentions, 35 were positive and none were negative. More than 50 women entered the casting call, turning audience interest into direct participation. Campaign results supplied by the client.",
     results: [
       {
         label: "Social media reach",
-        value: "883.3K",
+        value: "5M",
+        count: { to: 5_000_000 },
       },
       {
         label: "Social media interactions",
-        value: "10.7K",
+        value: "500K+",
+        count: { to: 500_000, suffix: "+" },
+      },
+      {
+        label: "Likes",
+        value: "500K",
+        count: { to: 500_000 },
+      },
+      {
+        label: "PR value",
+        value: "₦10M",
+        count: { to: 10_000_000, prefix: "₦" },
       },
       {
         label: "Social mentions",
         value: "46",
-      },
-      {
-        label: "Likes",
-        value: "3.9K",
+        count: { to: 46 },
       },
       {
         label: "Positive mentions",
         value: "35",
+        count: { to: 35 },
       },
-      {
-        label: "Negative mentions",
-        value: "0",
-      },
+      
     ],
     pressHeading: "Where our work was featured",
     pressCoverage: [
@@ -640,7 +651,7 @@ export const company = {
 export const owner = {
   name: "Onyeka Nwonah",
   title: "Founder & CEO, MARKTN",
-  portrait: "/images/founder/onyeka-nwonah.png",
+  portrait: "/images/founder/onyeka-nwonah-portrait.png",
   linkedin: "https://www.linkedin.com/in/onyekachukwu-nwonah-2166a023a/",
   introduction:
     "A PR and brand strategist with over five years of experience building campaigns across luxury, beauty, FMCG and entertainment in Nigeria.",
